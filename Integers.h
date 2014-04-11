@@ -26,10 +26,10 @@ public:
 
 	int getValue();
 	string getAnswer();
-	string Multiply(Integers& in);
-	string Divide(Integers& in);
+	void Multiply(Integers& in);
+	void Divide(Integers& in);
 	void Add(Integers& in);
-	string Subtract(Integers& in);
+	void Subtract(Integers& in);
 };
 
 

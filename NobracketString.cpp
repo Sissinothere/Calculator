@@ -61,7 +61,7 @@ void NobracketString:: separateString(){
 											//separateString and store them in the vector somenumbs
 	string temp;
 	for(int i=0;i<expression.length();i++){
-		if(expression[i]=='+'||expression[i]=='-'||expression[i]=='*'){
+		if(expression[i]=='+'||expression[i]=='*'){			//only re
 			op.push_back(expression[i]);
 			somenumbs.push_back(temp);
 			temp = "";
