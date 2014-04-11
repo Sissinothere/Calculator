@@ -31,17 +31,17 @@ void menu(){
 	cout<< "H.	Help"<<endl;
 	cout<< "Q.	Quit"<<endl;
 	cout<<"---------------------------------------------------------"<<endl;
-	cout<<"NOTE: "<<endl;
-	cout<<"I only figure out how to calculate Log class, "<<endl;
-	cout<<"because I don't have the other number type class in hand that I can test."<<endl;
-	cout<<"not even integer, I will create a integer class later then I do something like"<<endl;
-	cout<<"3+5*2"<<endl;
-
-	cout<<"but you can enter a complex express like: "<<endl;
-	cout<<"log_3:4-3*log3_5+log_3:5,"<<endl;
-	cout<<"log_3:4-3*log3_5+log_3:5,"<<endl;
-	cout<<"log_3:5+3/2+log_3:10"<<endl;
-	cout<<"do not enter (), it will not do the calculation"<<endl;
+//	cout<<"NOTE: "<<endl;
+//	cout<<"I only figure out how to calculate Log class, "<<endl;
+//	cout<<"because I don't have the other number type class in hand that I can test."<<endl;
+//	cout<<"not even integer, I will create a integer class later then I do something like"<<endl;
+//	cout<<"3+5*2"<<endl;
+//
+//	cout<<"but you can enter a complex express like: "<<endl;
+//	cout<<"log_3:4-3*log3_5+log_3:5,"<<endl;
+//	cout<<"log_3:4-3*log3_5+log_3:5,"<<endl;
+//	cout<<"log_3:5+3/2+log_3:10"<<endl;
+//	cout<<"do not enter (), it will not do the calculation"<<endl;
 	cout<<endl;
 }
 void dropSpace(string str){
