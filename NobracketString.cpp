@@ -1,5 +1,6 @@
 #include "NobracketString.h"
 #include "Logs.h"
+#include "Integers.h"
 
 
 /*
@@ -125,7 +126,7 @@ for(int i = 0; i<somenumbs.size();i++){
 	//		E e = new E(numb1);
 			type.push_back("e");
 	}else{
-	//		Integers integer = new Integers(numb1);
+			Integers* integer = new Integers(somenumbs[i]);
 			type.push_back("int");
 		}
 }
@@ -164,11 +165,12 @@ void NobracketString::add(string Anumb, string Atype, string Bnumb, string Btype
 		}
 		else if(Atype == "int")
 		{
-					//Integers intnumb = new Integers(Anumb);
-					////							intnumb->substract(Bnumb);
-					////							opAnswer = intnumb->getAnswer();
+					Integers* intnumbA = new Integers(Anumb);
+					Integers* intnumbB = new Integers(Bnumb);
+					intnumbA->Add(*intnumbB);
+					opAnswer = intnumbA->getAnswer();
 					////							//delete[] intnumb;
-					////							isReturnOneNumb = true;
+					isReturnOneNumb = true;
 		}
 		else if(Atype=="log")
 		{
@@ -213,11 +215,12 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 			}
 			else if(Atype == "int")
 			{
-				//Integers intnumb = new Integers(Anumb);
-				////							intnumb->add(Bnumb);
-				////							opAnswer = intnumb->getAnswer();
-				////							//delete[] intnumb;
-				////							isReturnOneNumb = true;
+				Integers* intnumbA = new Integers(Anumb);
+				Integers* intnumbB = new Integers(Bnumb);
+				intnumbA->Subtract(*intnumbB);
+				opAnswer = intnumbA->getAnswer();
+									////							//delete[] intnumb;
+				isReturnOneNumb = true;
 			}
 			else if(Atype=="log")
 			{
@@ -247,9 +250,99 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 }
 void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Btype){			//need to handle different types calculation, basicly differen type just return as it is.
 	cout<<"im in the divide()"<<endl;
+	isReturnOneNumb = false;
+			if(Atype==Btype){						//if they are the same type;
+				if(Atype == "frac")
+				{
+					//Fraction fra = new fraction(Anumb);
+					//							fra->add(Bnumb);
+					//							opAnwser = fra->getAnser();
+					//							isReturnOneNumb = true;
+					//							//same type fraction should always return one numb
+					//							//delete[] fra;				// here may need to delete the object.
+				}
+				else if(Atype == "int")
+				{
+					Integers* intnumbA = new Integers(Anumb);
+					Integers* intnumbB = new Integers(Bnumb);
+					intnumbA->Divide(*intnumbB);
+					opAnswer = intnumbA->getAnswer();					//!!!!!here type has to be a "frac"!!!!!
+										////							//delete[] intnumb;
+					isReturnOneNumb = true;
+				}
+				else if(Atype=="log")
+				{
+					Logs* lgA = new Logs(Anumb);
+					Logs* lgB = new Logs(Bnumb);
+					lgA->divide(*lgB);
+					opAnswer = lgA->getAnswer();
+												//delete[] lg;
+					if(opAnswer.find("-")<100)			//if the opanswer string contains "+", means it return a complex expression
+						isReturnOneNumb = false;
+					else
+						isReturnOneNumb = true;
+				}
+				else if(Atype=="nthroot")
+				{
+					//NthRoot nthNumb = new NthRoot(numb1);
+					////							nthNumb->add(Bnumb);
+					////							opAnswer = nthNumb->getAnswer();
+					////							if(opAnser.find("+"))			//if the opanswer string contains "+", means it return a complex expression
+					////								isReturnOneNumb = false;
+					////							else
+					////								isReturnOneNumb = true;
+				}//it is handled in the calculating()
+			}else{	//if not the same type
+				cout<<"add a different type value"<<endl;
+			}
 }
  void NobracketString::Multip(string Anumb,string Atype, string Bnumb, string Btype){
 	 cout<<"im in the multip()"<<endl;
+		isReturnOneNumb = false;
+			if(Atype==Btype){						//if they are the same type;
+				if(Atype == "frac")
+				{
+					//Fraction fra = new fraction(Anumb);
+					//							fra->add(Bnumb);
+					//							opAnwser = fra->getAnser();
+					//							isReturnOneNumb = true;
+					//							//same type fraction should always return one numb
+					//							//delete[] fra;				// here may need to delete the object.
+				}
+				else if(Atype == "int")
+				{
+					Integers* intnumbA = new Integers(Anumb);
+					Integers* intnumbB = new Integers(Bnumb);
+					intnumbA->Multiply(*intnumbB);
+					opAnswer = intnumbA->getAnswer();
+										////							//delete[] intnumb;
+					isReturnOneNumb = true;
+				}
+				else if(Atype=="log")
+				{
+					Logs* lgA = new Logs(Anumb);
+					Logs* lgB = new Logs(Bnumb);
+					lgA->Multip(*lgB);
+					opAnswer = lgA->getAnswer();
+												//delete[] lg;
+					if(opAnswer.find("-")<100)			//if the opanswer string contains "+", means it return a complex expression
+						isReturnOneNumb = false;
+					else
+						isReturnOneNumb = true;
+				}
+				else if(Atype=="nthroot")
+				{
+					//NthRoot nthNumb = new NthRoot(numb1);
+					////							nthNumb->add(Bnumb);
+					////							opAnswer = nthNumb->getAnswer();
+					////							if(opAnser.find("+"))			//if the opanswer string contains "+", means it return a complex expression
+					////								isReturnOneNumb = false;
+					////							else
+					////								isReturnOneNumb = true;
+				}//it is handled in the calculating()
+			}else{	//if not the same type
+				cout<<"add a different type value"<<endl;
+			}
 }
 
  void NobracketString::calculating(){
