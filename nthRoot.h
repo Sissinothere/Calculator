@@ -1,4 +1,4 @@
-
+//
 #ifndef NTHROOT_H_
 #define NTHROOT_H_
 
