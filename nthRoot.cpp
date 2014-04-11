@@ -1,5 +1,8 @@
 
 #include "nthRoot.h"
+#include <stdlib.h>
+#include <string>
+using namespace std;
 
 nthRoot::nthRoot(string str)
 {

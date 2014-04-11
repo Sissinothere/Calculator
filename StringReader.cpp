@@ -120,7 +120,7 @@ for (int i =0;i < input.length();i++){
 
 				//result = S(result);
 				input.insert(endPos+1, result);
-				cout<< input << endl;
+				//cout<< input << endl;
 				return Parenthesis();
 				return result;
 			}

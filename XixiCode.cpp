@@ -41,7 +41,12 @@ void dropSpace(string str){
 		str.replace(begin,1,"");//drop the space
 		begin = str.find(" ",begin);
 	}
-		StringReader *sr = new StringReader(str);
+	stringstream ss;
+	ss << '(';
+	ss<<str;
+	ss<<')';
+
+		StringReader *sr = new StringReader(ss.str());
 			sr->Inject();
 			sr->Parenthesis();
 
