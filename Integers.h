@@ -28,7 +28,7 @@ public:
 	string getAnswer();
 	string Multiply(Integers& in);
 	string Divide(Integers& in);
-	string Add(Integers& in);
+	void Add(Integers& in);
 	string Subtract(Integers& in);
 };
 

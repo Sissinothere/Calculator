@@ -56,19 +56,19 @@ string Integers::Divide(Integers& in)
 	else
 	{
 		answer = "/" + numTwo; //add number to the stream
-		return answer; //return a string with the contents of the stream
+		//void answer; //return a string with the contents of the stream
 	}
 	}
 
 //Accepts an Integer object and performs addition
-string Integers::Add(Integers& in)
+void Integers::Add(Integers& in)
 {
 	int numOne = this->getValue();
 	int numTwo = in.getValue();
-	int result =  numOne + numTwo;
-
-	answer = result; //add number to the stream
-	return answer; //return a string with the contents of the stream
+	answer =  numOne + numTwo;
+	cout<<"the integer add is "<<answer<<endl;
+	//answer = result; //add number to the stream
+	//return answer; //return a string with the contents of the stream
 	}
 
 //Accepts an Integer object and performs subtraction

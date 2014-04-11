@@ -126,7 +126,7 @@ for(int i = 0; i<somenumbs.size();i++){
 	//		E e = new E(numb1);
 			type.push_back("e");
 	}else{
-			Integers* integer = new Integers(somenumbs[i]);
+			//Integers* integer = new Integers(somenumbs[i]);
 			type.push_back("int");
 		}
 }
@@ -165,12 +165,12 @@ void NobracketString::add(string Anumb, string Atype, string Bnumb, string Btype
 		}
 		else if(Atype == "int")
 		{
-					Integers* intnumbA = new Integers(Anumb);
-					Integers* intnumbB = new Integers(Bnumb);
-					intnumbA->Add(*intnumbB);
-					opAnswer = intnumbA->getAnswer();
+			Integers* intnumbA = new Integers(Anumb);
+			Integers* intnumbB = new Integers(Bnumb);
+			intnumbA->Add(*intnumbB);
+			opAnswer = intnumbA->getAnswer();
 					////							//delete[] intnumb;
-					isReturnOneNumb = true;
+			isReturnOneNumb = true;
 		}
 		else if(Atype=="log")
 		{
