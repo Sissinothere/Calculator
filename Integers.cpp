@@ -62,13 +62,13 @@ string Integers::Divide(Integers& in)
 //Accepts an Integer object and performs addition
 void Integers::Add(Integers& in)
 {
-//
-//	int ans =  this->getValue() + in.getValue();
-//	cout<<"the integer add is "<<answer<<endl;
-//	//answer = result; //add number to the stream
-//	ostringstream convert;
-//	convert << ans;      // insert the textual representation of 'Number' in the characters in the stream
-//	answer = convert.str();
+
+	int ans =  this->getValue() + in.getValue();
+	cout<<"the integer add is "<<answer<<endl;
+	//answer = result; //add number to the stream
+	ostringstream convert;
+	convert << ans;      // insert the textual representation of 'Number' in the characters in the stream
+	answer = convert.str();
 	//return answer; //return a string with the contents of the stream
 	}
 
