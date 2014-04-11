@@ -1,6 +1,6 @@
 #include "Logs.h"
 #include <stdlib.h>
-
+//john edited this
 Logs::Logs(string str){ //log_50:5
 	somelog = str;
 	string s = "";
