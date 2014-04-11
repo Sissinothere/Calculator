@@ -335,7 +335,7 @@ void nthRoot::divide(nthRoot& rt)
 	}
 }
 
-
+/*
 int main()
 {
 
@@ -361,3 +361,4 @@ int main()
 
 	return 0;
 }
+*/
