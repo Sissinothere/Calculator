@@ -34,7 +34,7 @@ void menu(){
 	cout<<"Please enter your choice: "<<endl;
 	cout<<endl;
 }
-void dropSpace(string str){
+string dropSpace(string str){
 	int begin = 0;
 	begin = str.find(" ",begin);//find the first position in the string
 	while(begin!=-1){
@@ -46,30 +46,29 @@ void dropSpace(string str){
 	ss<<str;
 	ss<<')';
 
-		StringReader *sr = new StringReader(ss.str());
-			sr->Inject();
-			sr->Parenthesis();
+	StringReader *sr = new StringReader(ss.str());
+	sr->Inject();
+	sr->Parenthesis();
+
+//	cout<<"============================================="<<endl;
+//	cout<<"the answer is:"<<endl;
+//	cout<<str + " = "<<sr->getFinalAnswer()<<endl;
+//	cout<<"============================================="<<endl;
+	return (str +" = "+ (sr->getFinalAnswer()));
 
 }
-void getFunction(){
-
+string getFunction(){
 	string function;
-	cout<< "Please enter function: ";
+	cout<< "Please enter expression: ";
 	//cin>>function;
 	getline(cin,function);//this function need to link to the class stringreader.
-
-	dropSpace(function);
-//	StringReader *sr = new StringReader(function);
-//		sr->Inject();
-//		sr->Parenthesis();
-
-//		cout<<"============================================="<<endl;
-//			cout<<"the answer is:"<<endl;
+	return dropSpace(function);
+	//cout<<"Your answer is: "<<endl;
 }
-
 void help(){
 	cout<<"------------------------------------------------------------"<<endl;
-	cout<<"This claculator is design to calculate simple and complicate mathmatics calculation."<<endl;
+	cout<<"This calculator is design to calculate simple and complex mathematics calculation."<<endl;
+	cout<<"	(but please do not give a supper complex expression)"<<endl;
 	cout<<"Operator specifications: "<<endl;
 	cout<< "	< 'x to the power of y' == x^y >" << endl;
 	cout<< "	< 'the square root of x' == sqrt:x >" << endl;
@@ -78,15 +77,16 @@ void help(){
 	cout<< "	<'log base b of x' == log_b:x >" << endl;
 	cout<<endl;
 	cout<<"Tips: "<<endl;
-	cout<<'\t'<<"* Please enter the entire function."<<endl;
-	cout<<'\t'<<"* Do not enter '=' at the end of the function."<<endl;
-	cout<<'\t'<<"* Can add parameters in the function."<<endl;
+	cout<<'\t'<<"* Please enter a correct and complete expression."<<endl;
+	cout<<'\t'<<"* Do not enter '=' at the end of the expression."<<endl;
+	cout<<'\t'<<"* Can add () in the expression."<<endl;
 	cout<<'\t'<<"* Enter 'ans' to use the value from the last calculation."<<endl;
 	cout<<"------------------------------------------------------------"<<endl;
 
 }
 int main(){
 	string temp;
+	string ans;
 	char choice;
 	do{
 		menu();
@@ -94,20 +94,22 @@ int main(){
 		choice= temp[0];
 		switch(choice){
 			case 'N':
-			case 'n': 	getFunction();
+			case 'n': 	ans=getFunction();
 						break;
 			case 'P':
-			case 'p': 	cout<<"get answer from relenvant class"<<endl;
+			case 'p': 	cout<<"=============================================="<<endl;
+						cout<<"previous expression and answer is: "<<endl;
+						cout<<ans<<endl;
+						cout<<"=============================================="<<endl;
 						break;
 			case 'H':
 			case 'h':	help();
 						break;
 			case 'Q':
-			case 'q':   cout<<"Thank you for using Number Calculator System. Bye~ "<<endl;
+			case 'q':   cout<<"Thank you for using Number Calculator. Bye~ "<<endl;
 						break;
-			default: 	cout<<"You entered a invalid choice " << choice <<" , plese enter a valid choice"<<endl;
+			default: 	cout<<"You entered a invalid choice " << choice <<" , please try again"<<endl;
 			}
-
 		}while(choice!='Q'&& choice!='q');// one is false, all false;
 	return 0;
 }

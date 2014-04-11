@@ -111,9 +111,12 @@ for (int i =0;i < input.length();i++){
 				//cout << endPos<< endl;
 				cout << "This is whats passed to NobracketString: "<<result <<endl;
 				NobracketString* nbr = new NobracketString(result);
+				stringstream fa;
+				fa<<result << " = "<< nbr->getFinalAnswer();
+				finalAnswer = fa.str();
 				cout<<"============================================="<<endl;
 					cout<<"the answer is:"<<endl;
-					cout<<result + " = "<<nbr->getFinalAnswer()<<endl;
+					cout<<result + " = "<< nbr->getFinalAnswer()<<endl;
 					cout<<"============================================="<<endl;
 
 
@@ -130,6 +133,10 @@ for (int i =0;i < input.length();i++){
 }
 //make revcursive base cases
 return "";
+}
+
+string StringReader::getFinalAnswer(){
+	return finalAnswer;
 }
 
 

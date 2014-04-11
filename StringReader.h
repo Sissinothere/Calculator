@@ -15,6 +15,7 @@ using namespace std;
 
 class StringReader {
 	string input;
+	string finalAnswer;
 
 public:
 
@@ -24,6 +25,7 @@ public:
 	StringReader(string input);
 	//StringReader();
 	//virtual ~StringReader();
+	string getFinalAnswer();
 };
 
 #endif /* STRINGREADER_H_ */
