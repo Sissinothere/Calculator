@@ -37,7 +37,6 @@ string Integers::Multiply(Integers& in)
 	int numTwo = in.getValue();
 	//this->numb *= lg.getNumb();
 	result = numOne * numTwo;
-	answer =  result;//add number to the stream
 	return answer;//return a string with the contents of the stream
 	}
 
@@ -50,7 +49,7 @@ string Integers::Divide(Integers& in)
 	if(numOne%numTwo == 0)
 	{
 		int result =  numOne/numTwo;
-		answer = result;//add number to the stream
+
 		return answer;//return a string with the contents of the stream
 	}
 	else
