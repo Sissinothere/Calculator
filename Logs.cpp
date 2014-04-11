@@ -1,4 +1,4 @@
-#include "Logs.h"
+#include "Logs.h" //8
 #include <stdlib.h>
 //john edited this
 Logs::Logs(string str){ //log_50:5
