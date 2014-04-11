@@ -16,10 +16,10 @@ using namespace std;
 class NobracketString {
 	string expression;
 	string FiAnswer; 					//final return answer, combine with vector somenumb and op;
-	string opAnswer;							// store numb op numb return value;
+	string opAnswer;						// store numb op numb return value;
 	vector<string> somenumbs; 				//store value;
 	vector<char> op; 						//store "+""-""*""/"
-	//int size;
+	//vector<int> mutiposition;
 	vector<string> type; 					//store name of the type
 	bool isReturnOneNumb;
 	//int MutiPosition;						//the * index position
@@ -30,8 +30,8 @@ public:
 	void simplifynumbers();
 	string getFinalAnswer();
 //	bool checksametype(string strA, string strB);
-	int findOpMutiPosition();
-	void add(string Anumb,  string Atype, string Bnumb, string Btype);
+//	int findOpMutiPosition();
+	void add(string Anumb,string Atype,string Bnumb,string Btype);
 	void substract(string Anumb,  string Atype, string Bnumb, string Btype);
 	void divide(string Anumb,  string Atype, string Bnumb, string Btype);
 	void Multip(string Anumb,  string Atype, string Bnumb, string Btype);

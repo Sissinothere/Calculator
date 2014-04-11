@@ -51,13 +51,9 @@ void dropSpace(string str){
 		str.replace(begin,1,"");//drop the space
 		begin = str.find(" ",begin);
 	}
-
-
-	//NobracketString* test = new NobracketString(str);
-	//cout<<"============================================="<<endl;
-	//cout<<"the answer is:"<<endl;
-	//cout<<str + " = "<<test->getFinalAnswer()<<endl;
-	//cout<<"============================================="<<endl;
+		StringReader *sr = new StringReader(str);
+			sr->Inject();
+			sr->Parenthesis();
 
 }
 void getFunction(){
@@ -68,11 +64,12 @@ void getFunction(){
 	getline(cin,function);//this function need to link to the class stringreader.
 
 	dropSpace(function);
-	StringReader *sr = new StringReader(function);
-		sr->Inject();
-		sr->Parenthesis();
+//	StringReader *sr = new StringReader(function);
+//		sr->Inject();
+//		sr->Parenthesis();
 
-	//cout<<"Your answer is: "<<endl;
+//		cout<<"============================================="<<endl;
+//			cout<<"the answer is:"<<endl;
 }
 
 void help(){
@@ -123,7 +120,8 @@ int main(){
 
 /*
  update(4/4): user can enter space to the formular.
- 			  program will drop the space and pass the non-space string to the 				 string reader.
+ 			  program will drop the space and pass the non-space string to the
+ 			  string reader.
 
 
 */

@@ -110,7 +110,7 @@ for (int i =0;i < input.length();i++){
 				//cout << input << endl;
 				//cout << endPos<< endl;
 				cout << "This is whats passed to NobracketString: "<<result <<endl;
-				NobracketString *nbr = new NobracketString(result);
+				NobracketString* nbr = new NobracketString(result);
 				cout<<"============================================="<<endl;
 					cout<<"the answer is:"<<endl;
 					cout<<result + " = "<<nbr->getFinalAnswer()<<endl;
