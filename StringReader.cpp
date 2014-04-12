@@ -115,10 +115,12 @@ for (int i =0;i < input.length();i++){
 				fa<<result << " = "<< nbr->getFinalAnswer();
 				finalAnswer = fa.str();
 				cout<<"============================================="<<endl;
-					cout<<"the answer is:"<<endl;
-					cout<<result + " = "<< nbr->getFinalAnswer()<<endl;
-					cout<<"============================================="<<endl;
+				cout<<"the answer is:"<<endl;
+				cout<<result + " = "<< nbr->getFinalAnswer()<<endl;
+				cout<<"============================================="<<endl;
 
+				//test if there is anything except 0-9, if there is, add square brackets
+				//if there is sqaure brackets you test if there is anything to distribute
 
 
 				//result = S(result);
