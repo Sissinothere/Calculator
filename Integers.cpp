@@ -60,7 +60,7 @@ void Integers::Divide(Integers& in)
 		convert << numOne;
 		answer = convert.str() + "/";
 		convert << numTwo;
-		answer += convert;
+		answer += convert.str();
 		//void answer; //return a string with the contents of the stream
 	}
 
