@@ -27,7 +27,7 @@ Logs::Logs(string str){ //log_50:5
 		return; //exist from the function;
 	}
 
-	for(i;str[i]!=':';i++){//to get the base from log
+	for(i;str[i]!=':';i++){									//to get the base from log
 		if(str[i]=='e')
 			hasE = true;
 		if(str[i]=='p'||str[i]=='P'&&str[i+1]=='i')

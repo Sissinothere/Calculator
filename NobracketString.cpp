@@ -4,6 +4,7 @@
 #include "nthRoot.h"
 #include "Pi.h"
 #include "Exponential.h"
+#include "Fraction.h"
 
 
 /*
@@ -118,11 +119,12 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 
 	string tempnumb = somenumbs[i];
 	cout<<"tempnumb is "<<tempnumb<<endl;
+
 	if(tempnumb.find("/")<100){					//im each value, if it contains /,
-//		Fraction* fra = new fraction(numb1);
-//		somenumbs[i]=fra->getSimplify();	//change the vector number to the 		simplify number.
-			// fra->simplify();				//this = numb1
-// 			replace tempnumb = fra->getAnswer();
+		Fraction* fra = new fraction(somenumbs[i]);
+		somenumbs[i]=fra->getSimplify();	//change the vector number to the 		simplify number.
+		fra->simplify();				//this = numb1
+ 		replace tempnumb = fra->getAnswer();
 //		if(fra->canSimplytoInt())			//if it simplifies to int
 //			type.push_back("int");			// put "int" in the vector type;
 //		else
@@ -431,9 +433,9 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 
  	bool havesametype=false;
  	//check for mutipositio
- 	for(int i = 0;i<op.size();i++){					//check if op contains '*'
- 		if(op[i]=='*'){								//if op has '*'
- 			if(i==0){								// if '*' in the index position 0
+ 	for(int i = 0;i<op.size();i++){							//check if op contains '*'
+ 		if(op[i]=='*'){										//if op has '*'
+ 			if(i==0){										// if '*' in the index position 0
  				Multip(somenumbs[0],type[0],somenumbs[1],type[1]);		//do the mulip()
  				if(isReturnOneNumb){									//if the answer == is return one value example: log_3:4;
  					somenumbs[i]=opAnswer;								//set the element i to the opAnser,
@@ -464,8 +466,9 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
  		for(int j=i+1;j<op.size()+1;j++)
  			{
  				cout<<"begin to check for type here"<<endl;
- 				if(type[i]==type[j]&&op[j-1]=='*'){		//if the op is a *, skip
+ 				if(type[i]==type[j]&&op[j]=='*'){		//if the op is a *, skip
  					//do nothing;
+ 					cout<<"im in the 2+3*log"<<endl;
  				}
  				else if(type[i]==type[j]&&op[j-1]!='*'){				//if it has same type, and op does not have *,check for operator
  					havesametype = true;
@@ -520,7 +523,7 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
  				}							//check continue comparing the next type[i+1];
  											//after loop if we cannot find the same type;
  			}//end of the int j loop
- 					cout<<"end check for type here"<<endl;
+ //					cout<<"end check for type here"<<endl;
  		}//end of the int i loop
 
 // 	if(!havesametype)
