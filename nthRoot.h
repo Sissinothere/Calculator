@@ -1,7 +1,6 @@
 //
 #ifndef NTHROOT_H_
 #define NTHROOT_H_
-
 #include <strstream>
 #include <iostream>
 #include <string>

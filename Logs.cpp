@@ -1,6 +1,10 @@
 #include "Logs.h" //8
 #include <stdlib.h>
-//john edited this
+//Xixi
+
+
+
+//need to fix log_3:3 = 1/1; and 2log_3:2 simplify = log_3:4;
 Logs::Logs(string str){ //log_50:5
 	somelog = str;
 	string s = "";
@@ -17,16 +21,16 @@ Logs::Logs(string str){ //log_50:5
 	}
 	i++;
 	//check if user enter a right format;
-	if(s == "log") {}//do nothing;
+	if(s.find("log")<20) {}//do nothing;
 	else{// if not
-		cout<<"you does not match format 'log_x:y'"<<endl;
+		cout<<"you does not match format 'zlog_x:y'"<<endl;
 		return; //exist from the function;
 	}
 
-	for(i;str[i]!=':';i++){//to get the base from log
+	for(i;str[i]!=':';i++){									//to get the base from log
 		if(str[i]=='e')
 			hasE = true;
-		if(str[i]=='p'&&str[i+1]=='i')
+		if(str[i]=='p'||str[i]=='P'&&str[i+1]=='i')
 			hasPi= true;
 		tempbase += str[i];
 	}
@@ -85,17 +89,17 @@ bool Logs::canSimplifytoFra(){
 void Logs::Simplify(){
 	double result;
 	string value;
-	if(canSimplifytoFra()){
+	if(canSimplifytoInt()){
+		result= log(numb)/log(base);
+		ss<<result;
+		ss>>value;
+		somelog = value;
+	}
+	else if(canSimplifytoFra()){
 		result = log(base)/log(numb);
 		ss<<result;
 		ss>>value;
 		value ="1/"+value;
-		somelog = value;
-	}
-	else if(canSimplifytoInt()){
-		result= log(numb)/log(base);
-		ss<<result;
-		ss>>value;
 		somelog = value;
 	}
 	else{}//do nothing;
