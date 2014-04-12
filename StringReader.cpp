@@ -127,10 +127,20 @@ for (int i =0;i < input.length();i++){
 				//test if there is anything except 0-9, if there is, add square brackets
 				//if there is sqaure brackets you test if there is anything to distribute
 
+				if (nbr->ansIsComplex()){
+					stringstream cp;
+					cp << '[';
+					cp << nbr->getFinalAnswer();
+					cp << ']';
+				}
+				//maybe look for only final pair of parenthesis before handling foiling
+				for(int k = 0; k < nbr->getFinalAnswer().length();k++){
+					if (nbr->getFinalAnswer().at(i)=='['){
+						if (nbr->)
+					}
+				}
 
-				//result = S(result);
 				input.insert(endPos+1,nbr->getFinalAnswer());
-				//cout<< input << endl;
 				return Parenthesis();
 				return result;
 			}
