@@ -115,6 +115,7 @@ for (int i =0;i < input.length();i++){
 				stringstream fa;
 				fa<<result << " = "<< nbr->getFinalAnswer();
 				finalAnswer = fa.str();
+				nbr->ansIsComplex();
 				cout<<"============================================="<<endl;
 				cout<<"the answer is:"<<endl;
 				cout<<result + " = "<< nbr->getFinalAnswer()<<endl;
@@ -142,23 +143,3 @@ string StringReader::getFinalAnswer(){
 	return finalAnswer;
 }
 
-
-/*int main() {
-	string cat;
-	stringstream ss;
-	ss<<'(';
-	cout << "enter a function e.g. 4*(3+5)"<<endl;
-	cout << "do not wrap entire function in parenthesis e.g. (4*(3+5))"<< endl;
-
-
-	cin >> cat;
-	ss<<cat;
-	ss<<')';
-
-
-	StringReader *sr = new StringReader(ss.str());
-	sr->Inject();
-	sr->Parenthesis();
-		return 0;
-}
-*/

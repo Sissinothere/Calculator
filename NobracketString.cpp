@@ -123,11 +123,11 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 	if(tempnumb.find("/")<100){					//im each value, if it contains /,
 		Fraction* fra = new Fraction(somenumbs[i]);
 		somenumbs[i]=fra->getAnswer();	//change the vector number to the 		simplify number.
-//		fra->simplify();				//this = numb1
+//		fra->Reduction();				//this = numb1
 // 		tempnumb = fra->getAnswer();
-//		if(fra->canSimplytoInt())			//if it simplifies to int
-//			type.push_back("int");			// put "int" in the vector type;
-//		else
+		if(fra->canSimplifytoInteger())			//if it simplifies to int
+			type.push_back("int");			// put "int" in the vector type;
+		else
 			type.push_back("frac");
 	}
 	else if(tempnumb.find("log")<100){
@@ -548,6 +548,17 @@ void NobracketString::formFinalAnser(){
 		cout<<"im in the formfianlloop"<<endl;
 	}
 	FiAnswer += somenumbs[i];
+	}
+}
+
+bool NobracketString::ansIsComplex(){
+	if(somenumbs.size()==1){
+		cout<<"it is NOT a complex answer"<<endl;
+		return false;
+	}
+	else{
+		cout<<"it is a complex answer"<<endl;
+		return true;
 	}
 }
 

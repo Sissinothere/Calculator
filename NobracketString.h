@@ -38,6 +38,7 @@ public:
 	virtual ~NobracketString();
 	void calculating();
 	void formFinalAnser();
+	bool ansIsComplex();
 };
 
 #endif /* NOBRACKETSTRING_H_ */

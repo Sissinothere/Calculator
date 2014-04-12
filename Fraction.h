@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* 
-=======
-/*
->>>>>>> FETCH_HEAD
  * File:   Fraction.h
  * Author: VinayakSundar
  *
@@ -10,11 +6,7 @@
  */
 
 #ifndef FRACTION_H
-<<<<<<< HEAD
 #define	FRACTION_H
-=======
-#define FRACTION_H
->>>>>>> FETCH_HEAD
 
 using namespace std;
 
@@ -23,11 +15,7 @@ class Fraction{
 private:
     int num1;
     int den1;
-<<<<<<< HEAD
     
-=======
-
->>>>>>> FETCH_HEAD
     int lcd;
     int gcd;
     int reduced_num;
@@ -35,7 +23,6 @@ private:
     int new_num1;
     int new_num2;
     int a;
-<<<<<<< HEAD
    
     int new_fraction;
     int final_num;
@@ -44,35 +31,18 @@ private:
     int iValue;
     string sValue;
     string answer;
+    bool cansimptoInt=false;
     
 public:
     
     Fraction(string sValue);
     
-=======
-
-    int new_fraction;
-    int final_num;
-    int final_den;
-
-    int iValue;
-    string sValue;
-    string answer;
-
-public:
-
-    Fraction(string sValue);
-
->>>>>>> FETCH_HEAD
     int getFraction();
     int getNumerator();
     int getDenominator();
     string getAnswer();
-    void Reduction(Fraction& frac);
-<<<<<<< HEAD
-    bool canSimplifytoInteger(Fraction& frac);
-=======
->>>>>>> FETCH_HEAD
+    void Reduction();
+    bool canSimplifytoInteger();
     void Addition(Fraction& frac);
     void Subtraction(Fraction& frac);
     void Multiplication(Fraction& frac);
@@ -80,12 +50,6 @@ public:
 
 
 
-<<<<<<< HEAD
 #endif	/* FRACTION_H */
 
 };
-=======
-#endif  /* FRACTION_H */
-
-};
->>>>>>> FETCH_HEAD

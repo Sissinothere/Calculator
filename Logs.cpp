@@ -10,19 +10,27 @@ Logs::Logs(string str){ //log_50:5
 	string s = "";
 	string tempbase = "";
 	string tempnumb = "";
+	string frontnumb = "";
+
 	int i = 0;
 	bool hasE = false;
 	bool hasPi = false;
 	double base;
 	double numb;
 
-	for(i; str[i]!='_' &&i<=str.length();i++){
+	if(str[0]!='l'){									//check the case 3log_3:3
+		for(i;str[i]!='l' &&i<=str.length();i++){
+			s += str[i]
+		}
+	}
+
+	for(i; str[i]!='_' &&i<=str.length();i++){				//try to get ride of "log_"
 		s += str[i];
 	}
 	i++;
 	//check if user enter a right format;
 	if(s.find("log")<20) {}//do nothing;
-	else{// if not
+	else{
 		cout<<"you does not match format 'zlog_x:y'"<<endl;
 		return; //exist from the function;
 	}
@@ -46,7 +54,7 @@ Logs::Logs(string str){ //log_50:5
 	else if(hasPi)
 		base = 3.14;//if base is pi
 	else
-		base = atoi(tempbase.c_str());//convert string number to type int
+		base = atoi(tempbase.c_str());				//convert string number to type int
 
 	numb = atoi(tempnumb.c_str());
 
@@ -245,20 +253,3 @@ void Logs::Multip(Logs& lg){
 //	}
 }
 
-//int main(){
-//	string a = "log_3:7";
-//	string b = "Log_pi:10";//error here.
-//	string c = "log_4:11";
-//
-//	Logs* test1 = new Logs(a);
-//	Logs* test2 = new Logs(c);
-//	//test1->FinalSplit();
-//	//checklog(b);
-//    //test1->add(*test2);
-//	//test1->substract(*test2);
-//	test1->Multip(*test2);
-//	// cout<<test1->getBase()<<endl;
-//// 	cout<<test1->getNumb()<<endl;
-//	cout<<test1->getAnswer()<<endl;
-//
-//}
