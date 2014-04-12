@@ -9,8 +9,8 @@
 
 /*
 update (4/8):
-	1. this class will expected to receive a string of expression, (no brackets);
-and seperate them into two vectors. one stores value, the other store op;
+	1. This class will expected to receive a string of expression, (no brackets);
+	and seperate them into two vectors. one stores value, the other store op;
 	2.it will simplify each type of the value by creating a new type object.
 	3. and it will recieve a new simplfy string from the correspoinding class.
 	4. and then it will do the operator, check vector op first, if it contains'*', do the * operations, and then if it only has +,-, check vector somnumbs and find the same type and do the corresponding calculation.
