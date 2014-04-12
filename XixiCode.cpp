@@ -10,7 +10,7 @@
 //#include "Calculator1.cpp"
 //#include "Simplify.cpp"
 
-// Hello
+
 
 //==================================
 #include "NobracketString.h"
