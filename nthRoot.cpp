@@ -9,7 +9,7 @@ nthRoot::nthRoot(string str)
 	string tempScal = "";
 	int i = 0;
 
-	if(someroot.find("-") < 100)
+	if(someroot.at(0) == '-')
 	{
 		i++;
 		if(someroot.find("*") < 100)
@@ -37,7 +37,7 @@ nthRoot::nthRoot(string str)
 			}
 			strNum = tempNum;
 		
-			scal = -1*atoi(tempScal.c_str());
+			scal = -atoi(tempScal.c_str());
 			n = atoi(tempN.c_str());
 			num = atoi(tempNum.c_str());
 	
@@ -162,29 +162,93 @@ void nthRoot::primeFactors(int num, std::vector<int>&  factors, int facVal = 2)
 
 void nthRoot::simplify()
 {
-	std::vector<int> factors;
-	primeFactors(num, factors);
-	int count = 1;
-	int value = factors[0];
-	for(int i = 1; i < factors.size(); i++)
+	
+	if(num < 0 && (-num)%2 != 0)
 	{
-		if(value == factors[i])
+		std::vector<int> factors;
+		primeFactors(-num, factors);
+		int count = 1;
+		int value = factors[0];
+		for(int i = 1; i < factors.size(); i++)
 		{
-			count++;
-			if(count == n)
+			if(value == factors[i])
 			{
-				num = num / power(value, n);
-				scal = scal * value;
-				count = 0;
+				count++;
+				if(count == n)
+				{
+					num = num / power(value, n);
+					scal = scal * value;
+					count = 0;
+				}
+			}
+			else
+			{
+				value = factors[i];
+				count = 1;
 			}
 		}
-		else
+	}
+	else
+	{
+		std::vector<int> factors;
+		primeFactors(num, factors);
+		int count = 1;
+		int value = factors[0];
+		for(int i = 1; i < factors.size(); i++)
 		{
-			value = factors[i];
-			count = 1;
+			if(value == factors[i])
+			{
+				count++;
+				if(count == n)
+				{
+					num = num / power(value, n);
+					scal = scal * value;
+					count = 0;
+				}
+			}
+			else
+			{
+				value = factors[i];
+				count = 1;
+			}
 		}
 	}
+	
 	if(num == 1)
+	{
+		isInt = true;
+		cout << scal << endl;
+	}
+	else if(num == -1 && n%2 != 0)
+	{
+		isInt = true;
+		scal = -scal;
+		num = -num;
+		cout << scal << endl;
+	}
+	else if(num < -1 && n%2 != 0)
+	{
+		scal = -scal;
+		if(scal == 1)
+		{
+			if(n == 2)
+				cout << "sqrt:" << num << endl;
+			else
+				cout << n << "rt:" << num << endl;
+		}
+		else if(scal == -1)
+		{
+			if(n == 2)
+				cout << "-sqrt:" << num << endl;
+			else
+				cout <<"-" << n << "rt:" << num << endl;
+		}
+		else if(n == 2)
+			cout << scal << "*sqrt:" << num << endl;
+		else
+			cout << scal << "*" << n << "rt:" << num << endl;
+	}
+	else if(num == -1 && n%2 == 0)
 	{
 		isInt = true;
 		cout << scal << endl;
