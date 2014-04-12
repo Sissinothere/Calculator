@@ -63,8 +63,6 @@ void Integers::Divide(Integers& in)
 		answer += convert.str();
 		//void answer; //return a string with the contents of the stream
 	}
-
-
 }
 
 //Accepts an Integer object and performs addition
@@ -72,7 +70,7 @@ void Integers::Add(Integers& in)
 {
 
 	int ans =  this->getValue() + in.getValue();
-
+	cout<<"im in int add function ans is"<< ans<<endl;
 	//answer = result; //add number to the stream
 	ostringstream convert;
 	convert << ans;
@@ -83,12 +81,9 @@ void Integers::Add(Integers& in)
 //Accepts an Integer object and performs subtraction
 void Integers::Subtract(Integers& in)
 	{
-//	int numOne = this->getValue();
-//	int numTwo = in.getValue();
-//	int result =  numOne - numTwo;
-//	answer = result; //add number to the stream
-	//return answer; //return a string with the contents of the stream
+
 	int ans =  this->getValue() - in.getValue();
+	cout<<"im in int subtract function ans is"<< ans<<endl;
 	ostringstream convert;
 	convert << ans;      // insert the textual representation of 'Number' in the characters in the stream
 	answer = convert.str();
