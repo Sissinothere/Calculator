@@ -108,9 +108,9 @@ int Fraction::getDenominator()
         den1 = den1 / gcd;
         
         if(den1 == 1)
-            return "True";
+            answer = true;
         else
-            return "False";
+            answer = false;
     }
 
     void Fraction::Addition(Fraction& frac){
