@@ -1,23 +1,9 @@
-/*
- * Integer.cpp
- *
- *  Created on: Apr 6, 2014
- *      Author: Administrator
 
-	UPDATE (4/10):
- */
 
+//#include "Integers.h"
 #include "Integers.h"
-#include <cmath>
-#include <iostream>
-#include <string>
-#include <stdlib.h>
 
-using namespace std;
-
-//Integer constructor accepts string parameter
-Integers::Integers(string sValue)
-{
+Integers::Integers(string sValue) {
 	this->sValue = sValue; //String input stored
 	iValue = atoi(sValue.c_str()); //String input converted to Int
 }
