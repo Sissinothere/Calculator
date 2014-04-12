@@ -17,9 +17,9 @@ Logs::Logs(string str){ //log_50:5
 	}
 	i++;
 	//check if user enter a right format;
-	if(s == "log") {}//do nothing;
+	if(s.find("log")<20) {}//do nothing;
 	else{// if not
-		cout<<"you does not match format 'log_x:y'"<<endl;
+		cout<<"you does not match format 'zlog_x:y'"<<endl;
 		return; //exist from the function;
 	}
 

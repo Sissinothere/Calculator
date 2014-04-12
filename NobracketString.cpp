@@ -1,6 +1,7 @@
 #include "NobracketString.h"
 #include "Logs.h"
 #include "Integers.h"
+#include "nthRoot.h"
 
 
 /*
@@ -61,10 +62,15 @@ void NobracketString:: separateString(){
 											//separateString and store them in the vector somenumbs
 	string temp;
 	for(int i=0;i<expression.length();i++){
-		if(expression[i]=='+'||expression[i]=='*'){			//only re
-			op.push_back(expression[i]);
-			somenumbs.push_back(temp);
-			temp = "";
+		if(expression[i]=='+'||expression[i]=='*'||expression[i]=='-'){			//only re
+			if(expression[i]=='+'||expression[i+1]=='-'){
+
+			}
+			else{
+				op.push_back(expression[i]);
+				somenumbs.push_back(temp);
+				temp = "";
+			}
 		}
 		else
 			temp +=expression[i];
@@ -108,9 +114,9 @@ for(int i = 0; i<somenumbs.size();i++){
 		}
 	}
 	else if(tempnumb.find("^")<100||tempnumb.find("squrt")<100||tempnumb.find("nrt")<100){
-//		NthRoot power = new NthRoot(numb1);
-//												//will do the simplification in constructor.
-//		somenumbs[i]=fra->getSimplify();		//get a string type
+		nthRoot* power = new nthRoot(somenumbs[i]);
+												//will do the simplification in constructor.
+		somenumbs[i]=power->getSimp();		//get a string type
 //		if(power->canSimplifytoInt()){
 //			type.push_back("int");
 //		}
