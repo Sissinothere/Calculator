@@ -2,6 +2,8 @@
 #include "Logs.h"
 #include "Integers.h"
 #include "nthRoot.h"
+#include "Pi.h"
+#include "Exponential.h"
 
 
 /*
@@ -96,7 +98,7 @@ void NobracketString:: separateString(){
 //	}
 //		somenumbs.push_back(temp);
 	for(int i=0;i<expression.length();i++){
-		if(expression[i]=='+'||expression[i]=='-'||expression[i]=='*'){
+		if(expression[i]=='+'||expression[i]=='*'){
 				op.push_back(expression[i]);
 				somenumbs.push_back(temp);
 				temp = "";
@@ -154,7 +156,7 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 //		}else
 			type.push_back("root");
 	}
-	else if(tempnumb.find("Pi")<100){
+	else if(tempnumb.find("Pi")<100||tempnumb.find("pi")<100){
 		type.push_back("pi");
 	}
 	else if(tempnumb.find("e")<100){
@@ -221,10 +223,16 @@ void NobracketString::add(string Anumb, string Atype, string Bnumb, string Btype
 				isReturnOneNumb = true;
 		}//it is handled in the calculating()
 		else if(Atype=="pi"){
-
+			Pi* p = new Pi(Anumb);
+			p->Add(*p);
+			opAnswer = p->getAnswer();
+			isReturnOneNumb = true;
 		}
-		else if(Atype=="pi"){
-
+		else if(Atype=="e"){
+			Exponential* p = new Exponential(Anumb);
+			p->Add(*p);
+			opAnswer = p->getAnswer();
+			isReturnOneNumb = true;
 		}
 	}else{	//if not the same type
 			cout<<"add a different type value"<<endl;
@@ -279,10 +287,16 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 					isReturnOneNumb = true;
 			}//it is handled in the calculating()
 			else if(Atype=="pi"){
-
+				Pi* p = new Pi(Anumb);
+				p->Subtract(*p);
+				opAnswer = p->getAnswer();
+				isReturnOneNumb = true;
 			}
 			else if(Atype=="e"){
-
+				Exponential* p = new Exponential(Anumb);
+				p->Subtract(*p);
+				opAnswer = p->getAnswer();
+				isReturnOneNumb = true;
 			}
 		}else{	//if not the same type
 			cout<<"add a different type value"<<endl;
@@ -335,10 +349,16 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 
 				}//it is handled in the calculating()
 				else if(Atype=="pi"){
-
+					Pi* p = new Pi(Anumb);
+					p->Divide(*p);
+					opAnswer = p->getAnswer();
+					isReturnOneNumb = true;
 				}
 				else if(Atype=="e"){
-
+					Exponential* p = new Exponential(Anumb);
+					p->Divide(*p);
+					opAnswer = p->getAnswer();
+					isReturnOneNumb = true;
 				}
 			}else{	//if not the same type
 				cout<<"add a different type value"<<endl;
@@ -390,14 +410,21 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 						isReturnOneNumb = true;
 				}//it is handled in the calculating()
 				else if(Atype=="pi"){
-
+					Pi* p = new Pi(Anumb);
+					p->Multiply(*p);
+					opAnswer = p->getAnswer();
+					isReturnOneNumb = true;
 				}
 				else if(Atype=="e"){
-
+					Exponential* p = new Exponential(Anumb);
+					p->Multiply(*p);
+					opAnswer = p->getAnswer();
+					isReturnOneNumb = true;
 				}
-			}else{	//if not the same type
-				cout<<"add a different type value"<<endl;
 			}
+//			else{	//if not the same type
+//				cout<<"add a different type value"<<endl;
+//			}
 }
 
  void NobracketString::calculating(){

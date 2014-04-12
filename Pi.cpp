@@ -42,7 +42,7 @@ void Pi::Divide(Pi& in)
 //Accepts an Pi object and performs addition
 void Pi::Add(Pi& in)
 {
-	answer = "2*pi";
+	answer = "2pi";
 }
 
 //Accepts an Pi object and performs subtraction
