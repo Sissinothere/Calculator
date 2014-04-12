@@ -121,14 +121,14 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 	cout<<"tempnumb is "<<tempnumb<<endl;
 
 	if(tempnumb.find("/")<100){					//im each value, if it contains /,
-		Fraction* fra = new Fraction(somenumbs[i]);
-		somenumbs[i]=fra->getAnswer();	//change the vector number to the 		simplify number.
+		//Fraction* fra = new Fraction(somenumbs[i]);
+		//somenumbs[i]=fra->getAnswer();	//change the vector number to the 		simplify number.
 //		fra->Reduction();				//this = numb1
 // 		tempnumb = fra->getAnswer();
-		if(fra->canSimplifytoInteger())			//if it simplifies to int
-			type.push_back("int");			// put "int" in the vector type;
-		else
-			type.push_back("frac");
+		//if(fra->canSimplifytoInteger())			//if it simplifies to int
+		//	type.push_back("int");			// put "int" in the vector type;
+		//else
+		//	type.push_back("frac");
 	}
 	else if(tempnumb.find("log")<100){
 		Logs* lg = new Logs(somenumbs[i]);

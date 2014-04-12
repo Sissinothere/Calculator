@@ -1,4 +1,4 @@
-//
+
 #ifndef NTHROOT_H_
 #define NTHROOT_H_
 #include <strstream>
@@ -24,7 +24,8 @@ class nthRoot
 	public:
 		nthRoot(string str);
 		~nthRoot();
-		bool canIntSimplify();
+		bool canSimpifytoFrac();
+		bool canSimplifytoInt();
 		void add(nthRoot& rt);
 		void subtract(nthRoot& rt);
 		void multiply(nthRoot& rt);

@@ -111,6 +111,9 @@ for (int i =0;i < input.length();i++){
 				//cout << input << endl;
 				//cout << endPos<< endl;
 				cout << "This is whats passed to NobracketString: "<<result <<endl;
+
+				//here put the function to find pi's and e's here
+
 				NobracketString* nbr = new NobracketString(result);
 				stringstream fa;
 				fa<<result << " = "<< nbr->getFinalAnswer();
@@ -126,7 +129,11 @@ for (int i =0;i < input.length();i++){
 
 
 				//result = S(result);
+<<<<<<< HEAD
 				input.insert(endPos+1, nbr->getFinalAnswer());
+=======
+				input.insert(endPos+1,nbr->getFinalAnswer());
+>>>>>>> FETCH_HEAD
 				//cout<< input << endl;
 				return Parenthesis();
 				return result;

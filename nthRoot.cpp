@@ -1,9 +1,5 @@
-
 #include "nthRoot.h"
 #include <stdlib.h>
-#include <string>
-using namespace std;
-
 nthRoot::nthRoot(string str)
 {
 	someroot = str;
@@ -13,71 +9,142 @@ nthRoot::nthRoot(string str)
 	string tempScal = "";
 	int i = 0;
 
-	if(someroot.find("*") < 100)
+	if(someroot.find("-") < 100)
 	{
-		for(i; str[i]!='*' && i <=str.length();i++)
-		{
-			tempScal += str[i];
-		}
-		strScal = tempScal;
 		i++;
-		for(i; str[i]!='r' && i <=str.length();i++)
+		if(someroot.find("*") < 100)
 		{
-			s += str[i];
-		}
-		if(s == "sq")
-			tempN = "2";
-		else
-			tempN = s;
-		strN = tempN;
-		i = i+3;
+			for(i; str[i]!='*' && i <=str.length();i++)
+			{
+				tempScal += str[i];
+			}
+			strScal = tempScal;
+			i++;
+			for(i; str[i]!='r' && i <=str.length();i++)
+			{
+				s += str[i];
+			}
+			if(s == "sq")
+				tempN = "2";
+			else
+				tempN = s;
+			strN = tempN;
+			i = i+3;
 
-		for(i; i<str.length(); i++)
-		{
-			tempNum += str[i];
-		}
-		strNum = tempNum;
+			for(i; i<str.length(); i++)
+			{
+				tempNum += str[i];
+			}
+			strNum = tempNum;
 		
-		scal = atoi(tempScal.c_str());
-		n = atoi(tempN.c_str());
-		num = atoi(tempNum.c_str());
+			scal = -1*atoi(tempScal.c_str());
+			n = atoi(tempN.c_str());
+			num = atoi(tempNum.c_str());
 	
-		this->scal = scal;
-		this->n = n;
-		this->num = num;
+			this->scal = scal;
+			this->n = n;
+			this->num = num;
 
-		canIntSimplify();
+			canSimplifytoInt();
+		}
+		else
+		{
+			for(i; str[i]!='r' && i <=str.length();i++)
+			{
+				s += str[i];
+			}
+			if(s == "sq")
+				tempN = "2";
+			else
+				tempN = s;
+			strN = tempN;
+			i = i+3;
+
+			for(i; i<str.length(); i++)
+			{
+				tempNum += str[i];
+			}
+			strNum = tempNum;
+		
+			//scal = atoi(tempScal.c_str());
+			n = atoi(tempN.c_str());
+			num = atoi(tempNum.c_str());
+	
+			scal = -1;
+			this->n = n;
+			this->num = num;
+
+			canSimplifytoInt();
+		}
 	}
+
 	else
 	{
-		for(i; str[i]!='r' && i <=str.length();i++)
+		if(someroot.find("*") < 100)
 		{
-			s += str[i];
-		}
-		if(s == "sq")
-			tempN = "2";
-		else
-			tempN = s;
-		strN = tempN;
-		i = i+3;
+			for(i; str[i]!='*' && i <=str.length();i++)
+			{
+				tempScal += str[i];
+			}
+			strScal = tempScal;
+			i++;
+			for(i; str[i]!='r' && i <=str.length();i++)
+			{
+				s += str[i];
+			}
+			if(s == "sq")
+				tempN = "2";
+			else
+				tempN = s;
+			strN = tempN;
+			i = i+3;
 
-		for(i; i<str.length(); i++)
-		{
-			tempNum += str[i];
-		}
-		strNum = tempNum;
+			for(i; i<str.length(); i++)
+			{
+				tempNum += str[i];
+			}
+			strNum = tempNum;
 		
-		//scal = atoi(tempScal.c_str());
-		n = atoi(tempN.c_str());
-		num = atoi(tempNum.c_str());
+			scal = atoi(tempScal.c_str());
+			n = atoi(tempN.c_str());
+			num = atoi(tempNum.c_str());
 	
-		scal = 1;
-		this->n = n;
-		this->num = num;
+			this->scal = scal;
+			this->n = n;
+			this->num = num;
 
-		canIntSimplify();
+			canSimplifytoInt();
+		}
+		else
+		{
+			for(i; str[i]!='r' && i <=str.length();i++)
+			{
+				s += str[i];
+			}
+			if(s == "sq")
+				tempN = "2";
+			else
+				tempN = s;
+			strN = tempN;
+			i = i+3;
+
+			for(i; i<str.length(); i++)
+			{
+				tempNum += str[i];
+			}
+			strNum = tempNum;
+		
+			//scal = atoi(tempScal.c_str());
+			n = atoi(tempN.c_str());
+			num = atoi(tempNum.c_str());
+	
+			scal = 1;
+			this->n = n;
+			this->num = num;
+
+			canSimplifytoInt();
+		}
 	}
-
 }
 
 void nthRoot::primeFactors(int num, std::vector<int>&  factors, int facVal = 2)
@@ -129,6 +196,13 @@ void nthRoot::simplify()
 		else
 			cout << n << "rt:" << num << endl;
 	}
+	else if(scal == -1)
+	{
+		if(n == 2)
+			cout << "-sqrt:" << num << endl;
+		else
+			cout <<"-" << n << "rt:" << num << endl;
+	}
 	else if(n == 2)
 		cout << scal << "*sqrt:" << num << endl;
 	else
@@ -145,7 +219,7 @@ int nthRoot::power(int base, int pow)
 }
 
 
-bool nthRoot::canIntSimplify()
+bool nthRoot::canSimplifytoInt()
 {
 	isInt = false;
 	simplify();
@@ -198,64 +272,125 @@ void nthRoot::formNewRoot()
 	ss<<num;
 	ss>>strNum;
 	ss.clear();
-	if(strScal == "1")
+	
+	if(strScal.find("-") < 100)
 	{
-		if(strN == "2" && strNum != "1")
+		if(strScal == "1" || strScal == "-1")
 		{
-			newRoot = "sqrt";
-			newRoot += strNum;
-			someroot=newRoot;
-		}
-		else if(strNum == "1")
-		{
-			newRoot = strScal;
-			someroot = newRoot;
-		}
+			if(strN == "2" && strNum != "1")
+			{
+				newRoot = "-sqrt:";
+				newRoot += strNum;
+				someroot=newRoot;
+			}
+			else if(strNum == "1")
+			{
+				newRoot = strScal;
+				someroot = newRoot;
+			}
 		
+			else
+			{
+				newRoot = "-" + strN + "rt:";
+				newRoot += strNum;
+				someroot=newRoot;
+			}
+		}
 		else
 		{
-			newRoot = strN + "rt:";
-			newRoot += strNum;
-			someroot=newRoot;
+			if(strN == "2" && strNum != "1")
+			{
+				newRoot = strScal + "*sqrt:";
+				newRoot += strNum;
+				someroot=newRoot;
+			}
+			else if(strNum == "1")
+			{
+				newRoot = strScal;
+				someroot = newRoot;
+			}
+		
+			else
+			{
+				newRoot = strScal + "*";
+				newRoot += strN + "rt:";
+				newRoot += strNum;
+				someroot=newRoot;
+			}
 		}
 	}
-	else if(strScal == "0")
+
+	else if(strScal.find("-") > 100)
+	{
+		if(strScal == "1")
+		{
+			if(strN == "2" && strNum != "1")
+			{
+				newRoot = "sqrt:";
+				newRoot += strNum;
+				someroot=newRoot;
+			}
+			else if(strNum == "1")
+			{
+				newRoot = strScal;
+				someroot = newRoot;
+			}
+		
+			else
+			{
+				newRoot = strN + "rt:";
+				newRoot += strNum;
+				someroot=newRoot;
+			}
+		}
+		else
+		{
+			if(strN == "2" && strNum != "1")
+			{
+				newRoot = strScal + "*sqrt:";
+				newRoot += strNum;
+				someroot=newRoot;
+			}
+			else if(strNum == "1")
+			{
+				newRoot = strScal;
+				someroot = newRoot;
+			}
+		
+			else
+			{
+				newRoot = strScal + "*";
+				newRoot += strN + "rt:";
+				newRoot += strNum;
+				someroot=newRoot;
+			}
+		}
+	}
+	if(strScal == "0")
 	{
 		newRoot = "0";
 		someroot = newRoot;
-	}
-	else
-	{
-		if(strN == "2" && strNum != "1")
-		{
-			newRoot = strScal + "*sqrt:";
-			newRoot += strNum;
-			someroot=newRoot;
-		}
-		else if(strNum == "1")
-		{
-			newRoot = strScal;
-			someroot = newRoot;
-		}
-		
-		else
-		{
-			newRoot = strScal + "*";
-			newRoot += strN + "rt:";
-			newRoot += strNum;
-			someroot=newRoot;
-		}
 	}
 }
 
 void nthRoot::add(nthRoot& rt)
 {
+	/*
+	cout << rt.getAns()<<endl;
+	if(rt.getAns().at(0)=='-'){
+		this->subtract(rt);
+	}
+	*/
 	if(num == rt.getNum() && n == rt.getN())
 	{
 		scal = scal + rt.getScal();
 		//cout << scal << endl;
 		formNewRoot();
 		//cout << someroot << endl;
+	}
+	else if(rt.someroot.find("-") < 100)
+	{
+		someroot = getSimp() + rt.getSimp();
 	}
 	else
 	{
@@ -275,9 +410,14 @@ void nthRoot::subtract(nthRoot& rt)
 		formNewRoot();
 		//cout << someroot << endl;
 	}
+	else if(rt.getAns().at(0) == '-')
+	{
+		rt.scal = rt.scal*-1;
+		someroot = getSimp() + "+" + rt.getSimp();
+	}
 	else
 	{
-		someroot += getSimp() + "-" + rt.getSimp();
+		someroot = getSimp() + "-" + rt.getSimp();
 		//cout << someroot << endl;
 	}
 }
@@ -334,9 +474,10 @@ void nthRoot::divide(nthRoot& rt)
 	}
 	else
 	{
-		someroot += getSimp() + "/" + rt.getSimp();
+		someroot = getSimp() + "/" + rt.getSimp();
 	}
 }
+
 
 /*
 int main()
