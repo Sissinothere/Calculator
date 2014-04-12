@@ -3,8 +3,10 @@
 #include "Integers.h"
 #include <iostream>
 #include <stdlib.h>
+#include <string>
 
 using namespace std;
+
 Integers::Integers(string sValue) {
 	this->sValue = sValue; //String input stored
 	iValue = atoi(sValue.c_str()); //String input converted to Int
@@ -76,7 +78,6 @@ void Integers::Subtract(Integers& in)
 	convert << ans;      // insert the textual representation of 'Number' in the characters in the stream
 	answer = convert.str();
 	}
-
 //Returns current answer
 string Integers::getAnswer()
 {
