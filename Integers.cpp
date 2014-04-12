@@ -1,14 +1,10 @@
 
-<<<<<<< HEAD
-	UPDATE (4/10):
- */
-//:D
-//:D
-=======
->>>>>>> cf902e3e88b9bb1e22bbc954e2ec63478d33ef9f
 
 #include "Integers.h"
+#include <iostream>
+#include <stdlib.h>
 
+using namespace std;
 Integers::Integers(string sValue) {
 	this->sValue = sValue; //String input stored
 	iValue = atoi(sValue.c_str()); //String input converted to Int
