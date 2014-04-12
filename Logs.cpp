@@ -20,7 +20,7 @@ Logs::Logs(string str){ //log_50:5
 
 	if(str[0]!='l'){									//check the case 3log_3:3
 		for(i;str[i]!='l' &&i<=str.length();i++){
-			s += str[i]
+			s += str[i];
 		}
 	}
 
