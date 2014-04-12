@@ -142,8 +142,24 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 			type.push_back("frac");
 			cout<<"in the log to fra here"<<endl;			//else if it simplifies to fraction, put "fra" to vector type;
 		}else{
-			type.push_back("log");
-			cout<<"in the log to log here"<<endl;
+			lg->FinalSplit();						//try to split the log;
+			if(lg->getAnswer().find("+")){				//can split to different log;
+/*
+ *			 	for(int i=0;i<expression.length();i++){
+					if(expression[i]=='+'||expression[i]=='*'){
+					op.push_back(expression[i]);
+					somenumbs.push_back(temp);
+					temp = "";
+			}
+			else
+				temp +=expression[i];
+		}
+			somenumbs.push_back(temp);
+ */
+			}
+			else
+				type.push_back("log");					//if it can't, type = log;
+			//cout<<"in the log to log here"<<endl;
 		}
 	}
 	else if(tempnumb.find("^")<100||tempnumb.find("rt")<100){
@@ -272,8 +288,12 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 				lgA->substract(*lgB);
 				opAnswer = lgA->getAnswer();
 											//delete[] lg;
-				if(opAnswer.find("-")<100)			//if the opanswer string contains "+", means it return a complex expression
+				if(opAnswer.find("-")<100)
+				{								//if the opanswer string contains "+", means it return a complex expression
 					isReturnOneNumb = false;
+
+
+				}
 				else
 					isReturnOneNumb = true;
 			}
@@ -505,6 +525,10 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
  						else
  						{
  							cout<<"im in the calculating subtract(),return more then 1 value"<<endl; //don't change anything.
+/*
+ *
+ *
+ */
  						}
  					}
  				}

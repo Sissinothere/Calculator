@@ -7,6 +7,12 @@
 
 #ifndef FRACTION_H
 #define	FRACTION_H
+#include <iostream>
+#include <stdlib.h>
+#include <cmath>
+#include <sstream>
+#include <cmath>
+#include <string>
 
 using namespace std;
 

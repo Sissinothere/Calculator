@@ -17,12 +17,23 @@ Logs::Logs(string str){ //log_50:5
 	bool hasPi = false;
 	double base;
 	double numb;
+	double frontIntNumb;
 
+<<<<<<< HEAD
+	if(str[0]=='l'){									//check the case 3log_3:3
+		frontnumb = "1";
+	}else{
+		for(i;str[i]!='l' &&i<=str.length();i++){		//convert string number to type int
+			frontnumb += str[i];
+=======
 	if(str[0]!='l'){									//check the case 3log_3:3
 		for(i;str[i]!='l' &&i<=str.length();i++){
 			s += str[i];
+>>>>>>> FETCH_HEAD
 		}
 	}
+	frontIntNumb = atoi(frontnumb.c_str());
+	this->frontIntNumb = frontIntNumb;
 
 	for(i; str[i]!='_' &&i<=str.length();i++){				//try to get ride of "log_"
 		s += str[i];
@@ -59,12 +70,17 @@ Logs::Logs(string str){ //log_50:5
 	numb = atoi(tempnumb.c_str());
 
 	//make sure the initial value changed.
+//	cout<<"frontIntNumb is check in constructor "<<frontnumb<<endl;
+//	cout<<"numb is check in constructor "<<numb<<endl;
+//	cout<<"base is check in constructor "<<base<<endl;
 	this->numb = numb;
 	this->base = base;
 
 	if(canSimplifytoFra()||canSimplifytoInt()){
 		//check if it can be simplified
 		Simplify();//if it can, simplified it.
+	}else{
+		FinalSplit();
 	}
 }
 
@@ -191,7 +207,8 @@ string Logs::FinalSplit(){
 	 for(int i = 1; i < tempString.length();i++){
 		 Final+=tempString[i];
 	 }
-	 cout<<Final<<endl;
+	// cout<<Final<<endl;
+	 somelog=Final;
 	 return Final;
 }
 
@@ -201,55 +218,84 @@ double Logs::getBase(){
 double Logs::getNumb(){
 	return numb;
 }
+double Logs::getFrontIntNumb(){
+	return frontIntNumb;
+}
 string Logs::getAnswer(){
 	return somelog;
 }
+//string Logs::getStrfronstrNumb(){
+//	return strfronumb;
+//}
+
 void Logs::FormNewLog(){
 	string newlog;
-	ss<<numb;
+	ss<<frontIntNumb;			//conver front number to string
+	ss>>strfronumb;
+	ss.clear();
+	ss<<numb;					//conver numb to string
 	ss>>strnumb;
 	ss.clear();
-	ss<<base;
+	ss<<base;					//conver base to string
 	ss>>strbase;
 	ss.clear();
-	newlog = "log_" + strbase;
+	newlog = strfronumb + "log_" + strbase;
 	newlog += ":" + strnumb;
 	somelog=newlog;
 }
 
 void Logs::add(Logs& lg){ //need to conver double to string.
-	if(lg.getBase()==base){
+	if(frontIntNumb<0||lg.getFrontIntNumb()<0){
+		substract(lg);
+		cout<<endl;
+		cout<<"im in log add to -"<<endl;
+	}
+	else if(lg.getBase()==base&&lg.getNumb()==numb){
+//		cout<<"frontIntNumb is "<<frontIntNumb<<endl;
+		frontIntNumb +=lg.getFrontIntNumb();
+		FormNewLog();
+//		cout<<"im in log add"<<endl;
+	}
+
+	else if(lg.getBase()==base){
+//		cout<<"doing the log add()"<<endl;
 		this->numb *= lg.getNumb();
 		FormNewLog();//update
 		//everytime change base and numb need to use this function.
-	}else{
+	}
+	else{
 		somelog += "+" + lg.getAnswer();//two string can add tegether.
 	}
 }
 
 void Logs::substract(Logs& lg){
-	if(lg.getBase()==base){
-		this->numb /= lg.getNumb();
+	if(lg.getBase()==base&&lg.getNumb()==numb){
+		//this->numb /= lg.getNumb();
 		//here may need to pass to the fraction class, because it cannot has decimal number.
+		frontIntNumb +=lg.getFrontIntNumb();
 		FormNewLog();
 	}else{
 		somelog += "-" + lg.getAnswer();//two string can add tegether.
 	}
 }
 void Logs::divide(Logs& lg){ // if
-	// if(lg.getBase()==base&&lg.getNumb()==numb){
-// 		this->numb *= lg.getNumb();
-// 		FormNewLog();
-// 	}else{
+	 if(lg.getBase()==base&&lg.getNumb()==numb){
+		frontIntNumb /=lg.getFrontIntNumb();
+		FormNewLog();
+ 	}else if(base == lg.getBase()){
+ 		this->numb /= lg.getNumb();
+ 		FormNewLog();
+ 	}
+	 else{
 		somelog += "/" + lg.getAnswer();
-//	}
+	}
 }
 void Logs::Multip(Logs& lg){
-	// if(lg.getBase()==base&&lg.getNumb()==numb){
-// 		this->numb *= lg.getNumb();
-// 		FormNewLog();
-// 	}else{
+	 if(lg.getBase()==base&&lg.getNumb()==numb){
+		frontIntNumb *=lg.getFrontIntNumb();
+ 		FormNewLog();
+ 	}else{
 		somelog += "*" + lg.getAnswer();
-//	}
+	}
 }
 

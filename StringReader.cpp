@@ -47,7 +47,7 @@ void StringReader::Inject(){
 	 tempL= input.length();
 		for (int i = 0; i < input.length();i++){
 			tempL= input.length();
-			cout << "right before if statement"<<endl;
+			// cout << "right before if statement"<<endl;
 			if ((input.at(i)=='-'&&(int(input.at(i-1)) <= 57 && int(input.at(i-1)) >= 48))||(input.at(i)=='-'&&(int(input.at(i-1)) <= 105 && int(input.at(i-1)) >= 100))){
 				cout << "before erase "<<input<<endl;
 				//input.erase(i,1);
@@ -140,7 +140,17 @@ for (int i =0;i < input.length();i++){
 					}
 				}
 
+<<<<<<< HEAD
 				input.insert(endPos+1,nbr->getFinalAnswer());
+=======
+				//result = S(result);
+<<<<<<< HEAD
+				input.insert(endPos+1, nbr->getFinalAnswer());
+=======
+				input.insert(endPos+1,nbr->getFinalAnswer());
+>>>>>>> FETCH_HEAD
+				//cout<< input << endl;
+>>>>>>> cf902e3e88b9bb1e22bbc954e2ec63478d33ef9f
 				return Parenthesis();
 				return result;
 			}
