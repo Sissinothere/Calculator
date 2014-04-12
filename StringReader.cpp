@@ -47,7 +47,8 @@ void StringReader::Inject(){
 	 tempL= input.length();
 		for (int i = 0; i < input.length();i++){
 			tempL= input.length();
-			if ((input.at(i)=='-'&&(int(input.at(i-1)) <= 57 && int(input.at(i-1)) >= 48))){
+			cout << "right before if statement"<<endl;
+			if ((input.at(i)=='-'&&(int(input.at(i-1)) <= 57 && int(input.at(i-1)) >= 48))||(input.at(i)=='-'&&(int(input.at(i-1)) <= 105 && int(input.at(i-1)) >= 100))){
 				cout << "before erase "<<input<<endl;
 				//input.erase(i,1);
 				//input.erase(i-1,1);
