@@ -1,6 +1,6 @@
 #include "Logs.h" //8
 #include <stdlib.h>
-//john edited this
+//Xixi
 Logs::Logs(string str){ //log_50:5
 	somelog = str;
 	string s = "";
