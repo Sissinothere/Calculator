@@ -144,11 +144,10 @@ for (int i =0;i < input.length();i++){
 				input.insert(endPos+1,nbr->getFinalAnswer());
 =======
 				//result = S(result);
-<<<<<<< HEAD
+
 				input.insert(endPos+1, nbr->getFinalAnswer());
-=======
-				input.insert(endPos+1,nbr->getFinalAnswer());
->>>>>>> FETCH_HEAD
+
+
 				//cout<< input << endl;
 >>>>>>> cf902e3e88b9bb1e22bbc954e2ec63478d33ef9f
 				return Parenthesis();

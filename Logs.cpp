@@ -19,17 +19,17 @@ Logs::Logs(string str){ //log_50:5
 	double numb;
 	double frontIntNumb;
 
-<<<<<<< HEAD
+
 	if(str[0]=='l'){									//check the case 3log_3:3
 		frontnumb = "1";
 	}else{
 		for(i;str[i]!='l' &&i<=str.length();i++){		//convert string number to type int
 			frontnumb += str[i];
-=======
+		}
 	if(str[0]!='l'){									//check the case 3log_3:3
 		for(i;str[i]!='l' &&i<=str.length();i++){
 			s += str[i];
->>>>>>> FETCH_HEAD
+
 		}
 	}
 	frontIntNumb = atoi(frontnumb.c_str());
@@ -82,6 +82,7 @@ Logs::Logs(string str){ //log_50:5
 	}else{
 		FinalSplit();
 	}
+}
 }
 
 bool Logs::canSimplifytoInt(){
