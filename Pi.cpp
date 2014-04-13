@@ -80,6 +80,7 @@ void Pi::Divide(Pi& in)
 	int coefficientDivision = (this->getCoefficient() / in.getCoefficient());
 	if (coefficientDivision == 1)
 	{
+<<<<<<< HEAD
 		answer = "1";
 	}
 
@@ -102,6 +103,15 @@ void Pi::Divide(Pi& in)
 
 		answer = "(" + thisCoef + "/" + inCoef + ")" + "pi";
 	}
+=======
+		return;
+	}
+
+	coefficient << coefficientDivision;
+	string convert = coefficientHandle.str();
+	answer = convert;
+	//answer = "(" + (this->sCoefficient) + "/" + (in.sCoefficient) + ")" +
+>>>>>>> e0478bd778e0056c5c7e9c86b2dc3ae7c38721c9
 }
 
 //Accepts a Pi object and performs addition
@@ -133,4 +143,3 @@ void Pi::Subtract(Pi& in)
 	string convert = coefficientHandle.str();
 	answer = convert + "pi";
 }
-

@@ -27,6 +27,10 @@ class Pi
 
 public:
 
+<<<<<<< HEAD
+=======
+	Pi(char* sValue);
+>>>>>>> e0478bd778e0056c5c7e9c86b2dc3ae7c38721c9
 	Pi(string sValue);
 	void setCoefficient();
 	int getCoefficient();
