@@ -1,12 +1,4 @@
 
-<<<<<<< HEAD
-	UPDATE (4/10):
- */
-//:D
-//:D
-=======
->>>>>>> cf902e3e88b9bb1e22bbc954e2ec63478d33ef9f
-
 #include "Integers.h"
 
 Integers::Integers(string sValue) {

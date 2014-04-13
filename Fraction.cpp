@@ -79,9 +79,9 @@ int Fraction::getDenominator()
         
         lcd = (num1 * den1) / gcd;
         
-        //cout << "The Least Common Denominator is: "<< lcd << endl;
+        cout << "The Least Common Denominator is: "<< lcd << endl;
 
-        //cout<<"Greatest Common Divison (GCD):"<<gcd<<endl;
+        cout<<"Greatest Common Divison (GCD):"<<gcd<<endl;
         
        
         

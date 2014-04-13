@@ -136,20 +136,16 @@ for (int i =0;i < input.length();i++){
 				//maybe look for only final pair of parenthesis before handling foiling
 				for(int k = 0; k < nbr->getFinalAnswer().length();k++){
 					if (nbr->getFinalAnswer().at(i)=='['){
-						if (nbr->)
+						//if (nbr->)
 					}
 				}
 
-<<<<<<< HEAD
-				input.insert(endPos+1,nbr->getFinalAnswer());
-=======
 				//result = S(result);
 
 				input.insert(endPos+1, nbr->getFinalAnswer());
 
 
-				//cout<< input << endl;
->>>>>>> cf902e3e88b9bb1e22bbc954e2ec63478d33ef9f
+
 				return Parenthesis();
 				return result;
 			}
