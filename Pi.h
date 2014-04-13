@@ -16,20 +16,22 @@
 using namespace std;
 
 
-class Pi{
+class Pi
+{
 	double Pi_value;
 	int coefficient;
-	string sCoefficient;
-	char* sValue;
+	int powerCount;
+	string sValue;
 	string answer;
 	stringstream coefficientHandle;
 
 public:
 
-	Pi(char* sValue);
+	Pi(string sValue);
 	void setCoefficient();
 	int getCoefficient();
 	string getAnswer();
+	void clearBuffer();
 
 	void Multiply(Pi& in);
 	void Divide(Pi& in);

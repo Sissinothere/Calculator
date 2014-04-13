@@ -14,17 +14,23 @@
 
 using namespace std;
 
-//Pi constructor accepts char* parameter
-Pi::Pi(char* sValue)
+//Pi constructor accepts string parameter
+Pi::Pi(string sValue)
 {
 	this->sValue = sValue; //String input stored
 	this->Pi_value = 3.14;
 	this->setCoefficient(); //Sets coefficient value to int
+	this->powerCount = 1;
 }
+
 
 void Pi::setCoefficient()
 {
-	this->coefficient = atoi(this->sValue);
+	if (!atoi(this->sValue.c_str()))
+	{
+		this->coefficient = 1;
+	}
+	this->coefficient = atoi(this->sValue.c_str());
 }
 
 int Pi::getCoefficient()
@@ -37,43 +43,92 @@ string Pi::getAnswer()
 	return answer;
 }
 
-//Accepts an Pi object and performs multiplication
+//clears stringstream buffer
+void Pi::clearBuffer()
+{
+	this->coefficientHandle.str("");
+	this->coefficientHandle.clear();
+}
+
+//Accepts a Pi object and performs multiplication
 void Pi::Multiply(Pi& in)
 {
-	int coefficientMultiplication = (this->coefficient * in.coefficient);
-	coefficient << coefficientMultiplication;
-	string convert = coefficientHandle.str();
-	answer = convert + "pi^2";
+	this->clearBuffer();
+
+	int coefficientMultiplication = (this->getCoefficient() * in.getCoefficient());
+	//this->powerCount += 1;
+	//in.powerCount += 1;
+
+	coefficientHandle << coefficientMultiplication;
+	string CoefConvert = coefficientHandle.str();
+
+	//coefficientHandle.str("");
+	//coefficientHandle.clear();
+
+	//coefficientHandle << this->powerCount;
+	//string powerConvert = coefficientHandle.str();
+
+	//answer = CoefConvert + "pi^" + powerConvert;
+	answer = CoefConvert + "pi^2";
 }
 
-//Accepts an Pi object and performs division
+//Accepts a Pi object and performs division
 void Pi::Divide(Pi& in)
 {
+	this->clearBuffer();
+
 	int coefficientDivision = (this->getCoefficient() / in.getCoefficient());
-	if (coefficientDivision != 1)
+	if (coefficientDivision == 1)
 	{
-		return 
+		answer = "1";
 	}
 
-	coefficient << coefficientDivision;
-	string convert = coefficientHandle.str();
-	answer = convert;
-	answer = "(" + (this->sCoefficient) + "/" + (in.sCoefficient) + ")" +
+	else if (coefficientDivision % 2 == 0)
+	{
+		coefficientHandle << coefficientDivision;
+		string convert = coefficientHandle.str();
+		answer = convert;
+	}
+	else
+	{
+		coefficientHandle << this->getCoefficient();
+		string thisCoef = coefficientHandle.str();
+
+		coefficientHandle.str("");
+		coefficientHandle.clear();
+
+		coefficientHandle << in.getCoefficient();
+		string inCoef = coefficientHandle.str();
+
+		answer = "(" + thisCoef + "/" + inCoef + ")" + "pi";
+	}
 }
 
-//Accepts an Pi object and performs addition
+//Accepts a Pi object and performs addition
 void Pi::Add(Pi& in)
 {
+	this->clearBuffer();
+
 	int coefficientAddition = this->getCoefficient() + in.getCoefficient();
+	if (coefficientAddition == 0)
+	{
+		answer = "0";
+	}
 	coefficientHandle << coefficientAddition;
 	string convert = coefficientHandle.str();
 	answer = convert + "pi";
 }
 
-//Accepts an Pi object and performs subtraction
+//Accepts a Pi object and performs subtraction
 void Pi::Subtract(Pi& in)
 {
+	this->clearBuffer();
+
 	int coefficientSubtraction = this->getCoefficient() - in.getCoefficient();
+	if (coefficientSubtraction == 0)
+	{
+		answer = "0";
+	}
 	coefficientHandle << coefficientSubtraction;
 	string convert = coefficientHandle.str();
 	answer = convert + "pi";

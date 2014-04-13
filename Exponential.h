@@ -18,13 +18,18 @@ using namespace std;
 
 class Exponential{
 	double e_value;
+	int coefficient, powerCount;
 	string sValue;
 	string answer;
+	stringstream coefficientHandle;
 
 public:
 
 	Exponential(string sValue);
 	string getAnswer();
+	void setCoefficient();
+	int getCoefficient();
+	void clearBuffer();
 
 	void Multiply(Exponential& in);
 	void Divide(Exponential& in);
