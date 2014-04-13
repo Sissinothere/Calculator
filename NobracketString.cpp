@@ -175,13 +175,20 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 		nthRoot* power = new nthRoot(somenumbs[i]);
 												//will do the simplification in constructor.
 		somenumbs[i]=power->getSimp();		//get a string type
-//		if(power->canSimplifytoInt()){
-//			type.push_back("int");
+
+//		cout<<"99999999999999999999999"<<endl;
+		if(power->canSimplifytoInt()){
+			cout<<"292929292929"<<power->canSimplifytoInt()<<endl;
+			type.push_back("int");
+//
 //		}
-//		else if(power->canSimplifytoFrac()){
+//		else if(power->canSimpifytoFrac()){
 //			type.push_back("frac");
-//		}else
+		}else{
+			cout<<"0000000000000000"<<endl;
 			type.push_back("root");
+		}
+//		type.push_back("root");
 	}
 	else if(tempnumb.find("Pi")<100||tempnumb.find("pi")<100){
 		type.push_back("pi");
@@ -242,7 +249,7 @@ void NobracketString::add(string Anumb, string Atype, string Bnumb, string Btype
 		else if(Atype=="root")
 		{
 			nthRoot* nthNumb = new nthRoot(Anumb);
-			nthRoot* B = new nthRoot(Anumb);
+			nthRoot* B = new nthRoot(Bnumb);
 			nthNumb->add(*B);
 			opAnswer = nthNumb->getAns();
 			if(opAnswer.find("+")<100)			//if the opanswer string contains "+", means it return a complex expression
@@ -457,11 +464,15 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 }
 
  void NobracketString::calculating(){
-
+	 cout<<" NobracketString::calculating(){"<<endl;
   	bool havesametype=false;
   	//check for mutipositio
   	int temporarySize=0;
+  if(op.size()==0){
+
+  }else{
   	for(int i = 0;i<=op.size();++i){							//check if op contains '*'
+  		 cout<<" 111111NobracketString::calculating(){"<<endl;
   		if(temporarySize != op.size()){
   		  		i = 0;
   		  	}
@@ -502,13 +513,16 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
   	//if(temporarySize != op.size()){
   	//	i = 0;
   	//}
-  	}											//end of checking '*'
-
+  	}					//end of checking '*'
+  }
+cout<<endl;
+cout<<"-----------i am between loop"<<endl;
 int tempSize=0;
   	for(int i=0;i<op.size();i++){				//start to check if they have the same type; ad do the calculation
   		for(int j=i+1;j<op.size()+1;j++)
   		{
   			tempSize=op.size();
+  			cout<<endl;
   			cout<<"j is equal "<<j<<"i is "<<i <<"op.size() is "<<op.size()<<endl;
   				cout<<"begin to check for type here"<<endl;
   				if(type[i]==type[j]&&op[j]=='*'){		//if the op is a *, skip
@@ -595,8 +609,10 @@ int tempSize=0;
 
 void NobracketString::formFinalAnser(){
 	int i = 0;
+	cout<<"1111111111NobracketString::formFinalAnser(){"<<endl;
 	if(op.size()==0){
 		FiAnswer += somenumbs[0];
+		cout<<"FiAnswer += somenumbs[0]; "<<FiAnswer<<endl;
 	}
 	else{
 	for(i;i<op.size();i++){

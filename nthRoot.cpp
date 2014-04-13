@@ -74,7 +74,7 @@ nthRoot::nthRoot(string str)
 			this->n = n;
 			this->num = num;
 
-			canSimplifytoInt();
+			simplify();
 		}
 	}
 
@@ -113,7 +113,7 @@ nthRoot::nthRoot(string str)
 			this->n = n;
 			this->num = num;
 
-			canSimplifytoInt();
+			simplify();
 		}
 		else
 		{
@@ -142,7 +142,7 @@ nthRoot::nthRoot(string str)
 			this->n = n;
 			this->num = num;
 
-			canSimplifytoInt();
+			simplify();
 		}
 	}
 }
@@ -221,8 +221,9 @@ int nthRoot::power(int base, int pow)
 
 bool nthRoot::canSimplifytoInt()
 {
-	isInt = false;
-	simplify();
+
+	//isInt = false;
+	//simplify();
 	if(isInt == true)
 	{
 		cout << "Yes, it can be simplified into an integer." << endl;
@@ -233,6 +234,7 @@ bool nthRoot::canSimplifytoInt()
 		cout << "Cannot be simplified into integer." << endl;
 		return false;
 	}
+	cout<<"------------"<<endl;
 }
 
 int nthRoot::getN()

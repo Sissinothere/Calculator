@@ -39,5 +39,6 @@ class nthRoot
 		string getSimp();
 		string getAns();
 		void formNewRoot();
+
 };
 #endif

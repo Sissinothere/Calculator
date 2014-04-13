@@ -26,8 +26,7 @@ void menu(){
 	cout<< "Welcome to Number Cacluator System."<<endl;
 	cout<< "Please enter your choice: " <<endl;
 	cout<< "N.	Compute a new function." <<endl;
-	cout<< "P.	Review previous function and answers." <<endl;
-	// only one or multiple function?
+	cout<< "P.	Review previous function and answers." <<endl;	// only one or multiple function?
 	cout<< "H.	Help"<<endl;
 	cout<< "Q.	Quit"<<endl;
 	cout<<"---------------------------------------------------------"<<endl;
