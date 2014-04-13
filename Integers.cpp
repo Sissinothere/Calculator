@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-=======
-
->>>>>>> FETCH_HEAD
 #include "Integers.h"
 #include <iostream>
 #include <stdlib.h>

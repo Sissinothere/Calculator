@@ -140,19 +140,10 @@ for (int i =0;i < input.length();i++){
 					}
 				}
 
-<<<<<<< HEAD
-				//result = S(result);
-=======
+
 */
 				input.insert(endPos+1,nbr->getFinalAnswer());
->>>>>>> FETCH_HEAD
 
-
-
-<<<<<<< HEAD
-=======
-				//cout<< input << endl;
->>>>>>> FETCH_HEAD
 
 				return Parenthesis();
 				return result;
