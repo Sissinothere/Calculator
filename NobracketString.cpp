@@ -64,41 +64,7 @@ NobracketString::~NobracketString() {
 void NobracketString:: separateString(){
 											//separateString and store them in the vector somenumbs
 	string temp;
-	//these line for handle the negative value;
-//	for(int i=1;i<expression.length();i++){
-//		if(expression[0]=='-'){
-//			temp +=expression[0];
-//		}
-//		if((expression[i]=='+'||expression[i]=='-'||expression[i]=='*')&& (expression[i+1]!='-')){
-//			op.push_back(expression[i]);
-//			somenumbs.push_back(temp);
-//			temp = "";
-//		}
-//
-//		else if(expression[i]=='+'&&expression[i+1]=='-'){
-//			op.push_back(expression[i]);				//keep - to the somenumbs;
-////			somenumbs.push_back(temp);
-////			temp = "";
-//		}
-//		else if(expression[i]=='*'&&expression[i+1]=='-'){
-//			op.push_back(expression[i]);					//keep - to the somenumbs
-//
-//		}
-//		else if(expression[i]=='/'&&expression[i+1]=='-'){
-//			op.push_back(expression[i]);
-//
-//		}
-//		else if(expression[i]=='-'&&expression[i+1]=='-'){
-//			op.push_back(expression[i]);
-//
-//		}
-//		else if(expression[i]=='^'&&expression[i+1]=='-'){
-//				//skip;									//keep ^ and - to somenumbs;
-//		}
-//		else
-//			temp +=expression[i];
-//	}
-//		somenumbs.push_back(temp);
+
 	for(int i=0;i<expression.length();i++){
 		if(expression[i]=='+'||expression[i]=='*'){
 				op.push_back(expression[i]);
@@ -252,6 +218,8 @@ void NobracketString::add(string Anumb, string Atype, string Bnumb, string Btype
 			nthRoot* B = new nthRoot(Bnumb);
 			nthNumb->add(*B);
 			opAnswer = nthNumb->getAns();
+			cout<<"___________opAnswer = nthNumb->getAns(); "<<opAnswer<<endl;
+			cout<<endl;
 			if(opAnswer.find("+")<100)			//if the opanswer string contains "+", means it return a complex expression
 				isReturnOneNumb = false;
 			else

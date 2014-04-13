@@ -27,6 +27,7 @@ class Pi{
 public:
 
 	Pi(char* sValue);
+	Pi(string sValue);
 	void setCoefficient();
 	int getCoefficient();
 	string getAnswer();

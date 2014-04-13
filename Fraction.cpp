@@ -1,9 +1,7 @@
 #include "Fraction.h"
 //here
-
 Fraction::Fraction(string sValue)
 {
-    //string s = "";
     string tempnum1 = "";
     string tempden1 = "";
      int i=0;
@@ -12,7 +10,6 @@ Fraction::Fraction(string sValue)
         //string type num1 = s;
     }
     i++;
-
 
     for((i+1);sValue[i]!='/';i++){
         tempden1 += sValue[i];
@@ -27,9 +24,6 @@ Fraction::Fraction(string sValue)
 
    // strnum1 = tempnum1;
 
-
-
-    //this->sValue = sValue;
     num1 = atoi(sValue.c_str());
     den1 = atoi(tempden1.c_str());
 
@@ -38,167 +32,124 @@ Fraction::Fraction(string sValue)
 
     Reduction();
 
-
-
-
 }
 
 int Fraction::getFraction()
-{
-    return iValue;
-    
-}
+{    return iValue;}
 
 int Fraction::getNumerator()
-{
-    return num1; 
-    
-}
+{   return num1; }
 
 int Fraction::getDenominator()
-{
-    return den1;
-}
+{    return den1;}
 
 
  void Fraction::Reduction()
-    {
-       
-        ostringstream convert;
-        for(int i=1;i<=num1 && i<=den1;i++){
+{
+     ostringstream convert;
+     for(int i=1;i<=num1 && i<=den1;i++){
+    	 if(num1%i==0 && den1%i == 0 ){
+               gcd=i;
+          }
+     }
 
-
-                if(num1%i==0 && den1%i == 0 ){
-
-                     gcd=i;
-
-                }
-
-        }
-        
-       
-        
-        lcd = (num1 * den1) / gcd;
-        
+        lcd = (num1 * den1) / gcd;			//find the The Least Common Denominator
         cout << "The Least Common Denominator is: "<< lcd << endl;
 
         cout<<"Greatest Common Divison (GCD):"<<gcd<<endl;
-        
        
-        
-        this->num1 = num1 / gcd;
-        this->den1 = den1 / gcd;
+        this->num1 = (num1 / gcd);
+        this->den1 = (den1 / gcd);
+        cout<<"this->num1 = (num1 / gcd); is "<<num1<<endl;
+        cout<<" this->den1 = (den1 / gcd); is "<<den1<<endl;
 
         if(this->den1 == 1)
             convert << this->num1;
         else
             convert << this->num1 << "/" << this->den1 << endl;
-
-
-        
-
-         //convert << num1 << "/" << den1;
+        //convert << num1 << "/" << den1;
          answer = convert.str();
         
     }
     
 bool Fraction::canSimplifytoInteger(){
-   for(int i=1;i<=num1 && i<=den1;i++){
-
-
-                if(num1%i==0 && den1%i == 0 ){
-
-                     gcd=i;
-
-                }
-
-        }
-        
-       
-        
-        lcd = (num1 * den1) / gcd;
+//   for(int i=1;i<=num1 && i<=den1;i++){
+//       if(num1%i==0 && den1%i == 0 ){
+//         gcd=i;
+//       }
+//   }
+//
+//   lcd = (num1 * den1) / gcd;
         
         //cout << "The Least Common Denominator is: "<< lcd << endl;
 
         //cout<<"Greatest Common Divison (GCD):"<<gcd<<endl;
-        
-       
-        
-        num1 = num1 / gcd;
-        den1 = den1 / gcd;
-        
-        if(den1 == 1)
-           return true;
 
-        else
-           return false;
+       // num1 = num1 / gcd;
+       // den1 = den1 / gcd;
+        
+//        if(den1 == 1)
+//           return true;
+//
+//        else
+//           return false;
 
-      // cout << result;
+     return cansimptoInt;
  }
 
-    void Fraction::Addition(Fraction& fracB){
-    
-   
-    
+void Fraction::Addition(Fraction& fracB){
     if(den1 == 0 || fracB.getDenominator() == 0)
     {
         cout << "Cannot solve equation!!!!" << endl; //use throw catch
         
     }
-    
-    
-        for(int i=1;i<=den1 && i<=fracB.getDenominator();i++){
+   for(int i=1;i<=den1 && i<=fracB.getDenominator();i++){
+      if(den1%i == 0 && fracB.getDenominator()%i ==0){
+    	  	  gcd=i;
+       }else{}//do nothing;
+   	}
+    cout << "GCD is: " << gcd << endl;
+    if((den1 / gcd)==1){
+    	cansimptoInt=true;
+    }else{
+    	cansimptoInt=false;
+    }
 
+    lcd = (den1 * (fracB.getDenominator())) / gcd;
+         //cout << "The Least Common Denominator is: "<< lcd << endl;
 
-                if(den1%i == 0 && fracB.getDenominator()%i ==0){
-
-                     gcd=i;
-
-                }
-
-        }
-     
-   
-        //cout << "GCD is: " << gcd << endl;
-        
-        lcd = (den1 * (fracB.getDenominator())) / gcd;
-        
-        //cout << "The Least Common Denominator is: "<< lcd << endl;
-    
-        
-        
-         a = lcd / den1;
+     a = lcd / den1;
          //cout << a<< endl;
          
-      int b = lcd/(fracB.getDenominator());
+     int b = lcd/(fracB.getDenominator());
         
         num1 = a * num1;
         //cout << num1 << endl;
 
-       int num2 = b * fracB.getNumerator();
-       
-        //cout << num2 << endl;
+        int num2 = b * fracB.getNumerator();
+        cout <<" int num2 = b * fracB.getNumerator();"<< num2 << endl;
 
-        
-        
         new_fraction = (num1 + num2);
         
-        //cout << new_fraction << endl;
-        
-       
-        
-        if (new_fraction < lcd){
-        for (int i = new_fraction; i >=0; i--){
-            if (new_fraction%i ==0 && lcd%i==0){
-                cout << new_fraction/i << "/" << lcd/i << endl;
-                ostringstream convert;
-                convert <<new_fraction/i << "/" << lcd/i;
-                answer = convert.str();
+        cout << "new_fraction = (num1 + num2);" <<lcd << endl; //can run to here.
 
-            }
-        }
+     if (new_fraction < lcd){			//new_fraction = 2;	lcd =3
+    	 ostringstream convert;
+    	 convert <<new_fraction << "/" << lcd;
+    	 answer = convert.str();
+    	 cout<<"_______ answer = convert.str();"<<answer<<endl;
+//        for(int i = new_fraction; i >=0; i--){
+//        	cout<<"        for (int i = new_fraction; i >=0; i--){"<<endl;
+//            if (new_fraction%i ==0 && lcd%i==0){
+//                cout << new_fraction/i << "/" << lcd/i << endl;
+//                ostringstream convert;
+//                convert <<new_fraction/i << "/" << lcd/i;
+//                answer = convert.str();
+//
+//            }else{cout<<"____???"<<endl;}//do nothing;
+//        }
     }
-    if (new_fraction > lcd){
+     else if (new_fraction > lcd){
         for(int i = lcd; i >=0; i--){
             cout << new_fraction/i << "/" << lcd/i << endl;
             ostringstream convert;
@@ -206,12 +157,11 @@ bool Fraction::canSimplifytoInteger(){
             answer = convert.str();
         }
     }
-    if(new_fraction == lcd){
+     else{
         cout << 1;
         ostringstream convert;
         convert << 1;
         answer = convert.str();
-
     }
 
         
@@ -222,8 +172,8 @@ bool Fraction::canSimplifytoInteger(){
         //cout << new_fraction <<"/"<<lcd<< endl;
         
    
-    
-    }
+    cout<<"____im finished the fraction add()"<<endl;
+}
     
     
     
@@ -438,7 +388,7 @@ void Fraction::Division(Fraction& frac){
 //Returns the answer as a string
 string Fraction::getAnswer()
 {
-    cout<< answer << endl;;
-    
+    //cout<< answer << endl;;
+    return answer;
 }
 

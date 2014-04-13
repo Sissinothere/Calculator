@@ -18,21 +18,22 @@ Logs::Logs(string str){ //log_50:5
 	double base;
 	double numb;
 	double frontIntNumb;
-
-<<<<<<< HEAD
-	if(str[0]!='l'){									//check the case 3log_3:3
-		for(i;str[i]!='l' &&i<=str.length();i++){
-			s += str[i];
-=======
 	if(str[0]=='l'){									//check the case 3log_3:3
 		frontnumb = "1";
-	}else{
+	}
+	else if(str[0]=='-'&&str[1]=='l'){
+		frontnumb = "-1";
+	}
+	else{
 		for(i;str[i]!='l' &&i<=str.length();i++){		//convert string number to type int
 			frontnumb += str[i];
->>>>>>> b9d577f72a147852c5a661b00df91dcf7d199bd5
 		}
 	}
+
 	frontIntNumb = atoi(frontnumb.c_str());
+	cout<<"frontnumb is "<<frontnumb<<endl;
+	cout<<"frontIntNumb is "<<frontIntNumb<<endl;
+	cout<<endl;
 
 
 	for(i; str[i]!='_' &&i<=str.length();i++){				//try to get ride of "log_"
@@ -80,14 +81,14 @@ Logs::Logs(string str){ //log_50:5
 		//check if it can be simplified
 		Simplify();//if it can, simplified it.
 	}else{
-		FinalSplit();
+//		FinalSplit();
 	}
 }
 
 bool Logs::canSimplifytoInt(){
 	//base^x = numb; if x is a integer, return it as integer.
 	//log_3:9 = 2; this string = 2;
-	cout<<"in log canSimplifytoInt() class"<<endl;
+	cout<<"in log () class"<<endl;
 	cout<<"numb is "<<numb<<"base is "<<base<<endl;
 	cout<<endl;
 	double result;
@@ -122,6 +123,7 @@ void Logs::Simplify(){
 		result= log(numb)/log(base);
 		ss<<result;
 		ss>>value;
+		ss<<getFrontIntNumb();
 		somelog = value;
 	}
 	else if(canSimplifytoFra()){
@@ -135,7 +137,26 @@ void Logs::Simplify(){
 }
 
 string Logs::getSimplify(){
-	return somelog;
+	string temp;
+	cout<<"<getFrontIntNumb(); is "<<getFrontIntNumb()<<endl;
+	ss.clear();
+	ss<<getFrontIntNumb();
+	ss>>temp;
+	if(canSimplifytoFra()||canSimplifytoInt()){
+		if(getFrontIntNumb()==1){
+			return somelog;
+		}else if(getFrontIntNumb()==-1){
+			return "-"+somelog;
+		}
+		//temp = temp + "*" + somelog;
+	}
+	else{			//somelog is a log type
+		temp +=somelog;
+	}
+	//temp +=somelog;
+	cout<<"temp is "<<temp<<endl;
+	cout<<"Logs::getSimplify() "<<temp<<endl;
+	return temp;
 }
 
 string Logs::FinalSplit(){
@@ -235,9 +256,9 @@ string Logs::getAnswer(){
 
 void Logs::FormNewLog(){
 	string newlog;
-	ss<<frontIntNumb;			//conver front number to string
-	ss>>strfronumb;
-	ss.clear();
+//	ss<<frontIntNumb;			//conver front number to string
+//	ss>>strfronumb;
+//	ss.clear();
 	ss<<numb;					//conver numb to string
 	ss>>strnumb;
 	ss.clear();

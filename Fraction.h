@@ -1,9 +1,3 @@
-/* 
- * File:   Fraction.h
- * Author: VinayakSundar
- *
- * Created on April 11, 2014, 7:59 PM
- */
 
 #ifndef FRACTION_H
 #define	FRACTION_H
@@ -24,12 +18,12 @@ private:
     
     int lcd;
     int gcd;
-    int reduced_num;
-    int reduced_den;
-    int new_num1;
-    int new_num2;
+//    int reduced_num;
+//    int reduced_den;
+//    int new_num1;
+//    int new_num2;
     int a;
-   
+
     int new_fraction;
     int final_num;
     int final_den;
@@ -42,7 +36,7 @@ private:
 public:
     
     Fraction(string sValue);
-    //
+    
     int getFraction();
     int getNumerator();
     int getDenominator();

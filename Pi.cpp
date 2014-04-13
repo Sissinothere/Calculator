@@ -52,13 +52,13 @@ void Pi::Divide(Pi& in)
 	int coefficientDivision = (this->getCoefficient() / in.getCoefficient());
 	if (coefficientDivision != 1)
 	{
-		return 
+		return;
 	}
 
 	coefficient << coefficientDivision;
 	string convert = coefficientHandle.str();
 	answer = convert;
-	answer = "(" + (this->sCoefficient) + "/" + (in.sCoefficient) + ")" +
+	//answer = "(" + (this->sCoefficient) + "/" + (in.sCoefficient) + ")" +
 }
 
 //Accepts an Pi object and performs addition
@@ -78,4 +78,3 @@ void Pi::Subtract(Pi& in)
 	string convert = coefficientHandle.str();
 	answer = convert + "pi";
 }
-
