@@ -42,7 +42,7 @@ private:
 public:
     
     Fraction(string sValue);
-    
+    //
     int getFraction();
     int getNumerator();
     int getDenominator();

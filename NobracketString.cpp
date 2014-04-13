@@ -8,6 +8,7 @@
 
 
 /*
+ *
 update (4/8):
 	1. This class will expected to receive a string of expression, (no brackets);
 	and seperate them into two vectors. one stores value, the other store op;
@@ -137,32 +138,35 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 	}
 	else if(tempnumb.find("log")<100){
 		Logs* lg = new Logs(somenumbs[i]);
+
 		somenumbs[i]=lg->getSimplify();
+		cout<<"somenumbs[i] is "<<somenumbs[i]<<endl;
 		if(lg->canSimplifytoInt()){			//check if it can be simplified
+
 			type.push_back("int");
-			cout<<"in the log to int here"<<endl;
+			cout<<"in the log to int here lg->canSimplifytoInt()"<<endl;
 											//if it simplifies to int, put "int" to vector type;
 		}
 		else if(lg->canSimplifytoFra()){
 			type.push_back("frac");
 			cout<<"in the log to fra here"<<endl;			//else if it simplifies to fraction, put "fra" to vector type;
 		}else{
-			lg->FinalSplit();						//try to split the log;
-			if(lg->getAnswer().find("+")){				//can split to different log;
-/*
- *			 	for(int i=0;i<expression.length();i++){
-					if(expression[i]=='+'||expression[i]=='*'){
-					op.push_back(expression[i]);
-					somenumbs.push_back(temp);
-					temp = "";
-			}
-			else
-				temp +=expression[i];
-		}
-			somenumbs.push_back(temp);
- */
-			}
-			else
+//			lg->FinalSplit();						//try to split the log;
+//			if(lg->getAnswer().find("+")){				//can split to different log;
+///*
+// *			 	for(int i=0;i<expression.length();i++){
+//					if(expression[i]=='+'||expression[i]=='*'){
+//					op.push_back(expression[i]);
+//					somenumbs.push_back(temp);
+//					temp = "";
+//			}
+//			else
+//				temp +=expression[i];
+//		}
+//			somenumbs.push_back(temp);
+// */
+//			}
+//			else
 				type.push_back("log");					//if it can't, type = log;
 			//cout<<"in the log to log here"<<endl;
 		}
@@ -456,34 +460,48 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 
   	bool havesametype=false;
   	//check for mutipositio
-  	for(int i = 0;i<op.size();i++){							//check if op contains '*'
-  		if(op[i]=='*'){										//if op has '*'
-  			if(i==0){										// if '*' in the index position 0
+  	int temporarySize=0;
+  	for(int i = 0;i<=op.size();++i){							//check if op contains '*'
+  		if(temporarySize != op.size()){
+  		  		i = 0;
+  		  	}
+  		temporarySize= op.size();
+  		if(op[i]=='*'){
+  			cout<<"i is : "<<i<<endl;//if op has '*'
+  			if(i==0){
+  				cout<<"if(i==0){ : "<<endl;// if '*' in the index position 0
+
+  				cout<<endl;
   				Multip(somenumbs[0],type[0],somenumbs[1],type[1]);		//do the mulip()
   				if(isReturnOneNumb){									//if the answer == is return one value example: log_3:4;
   					somenumbs[i]=opAnswer;								//set the element i to the opAnser,
-  					somenumbs.erase(somenumbs.begin()+(i+1));			//erase the second element
-  					op.erase(op.begin()+(i));							//erase the '*'
-  					cout<<"the mutip() get answer is now "<<somenumbs[i]<<endl;
-  					cout<<"im in the calculating function delecting the '*' sign in the index 0"<<endl;
+  					somenumbs.erase(somenumbs.begin()+1);			//erase the second element
+  					op.erase(op.begin());							//erase the '*'
+//  					cout<<"the mutip() get answer is now "<<somenumbs[i]<<endl;
+//  					cout<<"im in the calculating function delecting the '*' sign in the index 0"<<endl;
   				}
   				else{cout<<"the '*' sign in the index 0 and the answer return more then one value"<<endl;}								// if the answer return more then one value, example 5*log_3:4;
   													//keep everything as it is.
   			}
   			else{
+  				cout<<"if(i==0){ : else{"<<endl;
   				Multip(somenumbs[i],type[i],somenumbs[i+1],type[i+1]);
   				if(isReturnOneNumb){									//if the answer == is return one value example: log_3:4;
   					somenumbs[i]=opAnswer;								//set the element i to the opAnser,
   					somenumbs.erase(somenumbs.begin()+(i+1));			//erase the second element
   					op.erase(op.begin()+(i));							//erase the '*'
-  					cout<<"the mutip() get answer is now "<<somenumbs[i]<<endl;
-  					cout<<"im in the calculating function delect '*' sign DOES NOT in the index 0"<<endl;
+//  					cout<<"the mutip() get answer is now "<<somenumbs[i]<<endl;
+//  					cout<<"im in the calculating function delect '*' sign DOES NOT in the index 0"<<endl;
   				}
   				else{cout<<"the '*' sign DOES NOT in the index 0, and the answer return more then one value"<<endl;}												// if the answer return more then one value, example 5*log_3:4;
   																	//keep everything as it is.
   			}
+
   		}
-  		else{}									//if(op[i]!='*', do nothing;
+  		else{}	//if(op[i]!='*', do nothing;
+  	//if(temporarySize != op.size()){
+  	//	i = 0;
+  	//}
   	}											//end of checking '*'
 
 int tempSize=0;
@@ -495,7 +513,7 @@ int tempSize=0;
   				cout<<"begin to check for type here"<<endl;
   				if(type[i]==type[j]&&op[j]=='*'){		//if the op is a *, skip
   					//do nothing;
-  					cout<<"im in the 2+3*log"<<endl;
+  			//		cout<<"im in the 2+3*log"<<endl;
   				}
   				else if(type[i]==type[j]&&op[j-1]!='*'){				//if it has same type, and op does not have *,check for operator
   					havesametype = true;
@@ -532,10 +550,6 @@ int tempSize=0;
   						else
   						{
   							cout<<"im in the calculating subtract(),return more then 1 value"<<endl; //don't change anything.
- /*
-  *
-  *
-  */
   						}
   					}
   				}
@@ -570,12 +584,12 @@ int tempSize=0;
  // 		opAnswer += somenumbs[somenumbs.size()-1];
  // 	}
  // 	else{cout<<"it is done it's calculation"<<endl;}
-  	if(!op.empty()){
-  		cout<<"op is not empty"<<endl;
-  		if(op[0]=='+'){
-  			add(somenumbs[0],type[0],somenumbs[1],type[1]);
-  		}
-  	}
+//  	if(!op.empty()){
+//  		cout<<"op is not empty"<<endl;
+//  		if(op[0]=='+'){
+//  			add(somenumbs[0],type[0],somenumbs[1],type[1]);
+//  		}
+//  	}
   }
 
 

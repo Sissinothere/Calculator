@@ -1,5 +1,6 @@
 #include "Fraction.h"
 //here
+
 Fraction::Fraction(string sValue)
 {
     //string s = "";

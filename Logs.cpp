@@ -19,21 +19,15 @@ Logs::Logs(string str){ //log_50:5
 	double numb;
 	double frontIntNumb;
 
-
 	if(str[0]=='l'){									//check the case 3log_3:3
 		frontnumb = "1";
 	}else{
 		for(i;str[i]!='l' &&i<=str.length();i++){		//convert string number to type int
 			frontnumb += str[i];
 		}
-	if(str[0]!='l'){									//check the case 3log_3:3
-		for(i;str[i]!='l' &&i<=str.length();i++){
-			s += str[i];
-
-		}
 	}
 	frontIntNumb = atoi(frontnumb.c_str());
-	this->frontIntNumb = frontIntNumb;
+
 
 	for(i; str[i]!='_' &&i<=str.length();i++){				//try to get ride of "log_"
 		s += str[i];
@@ -70,11 +64,11 @@ Logs::Logs(string str){ //log_50:5
 	numb = atoi(tempnumb.c_str());
 
 	//make sure the initial value changed.
-//	cout<<"frontIntNumb is check in constructor "<<frontnumb<<endl;
-//	cout<<"numb is check in constructor "<<numb<<endl;
-//	cout<<"base is check in constructor "<<base<<endl;
+	cout<<"frontIntNumb is check in constructor "<<strfronumb<<endl;
+
 	this->numb = numb;
 	this->base = base;
+	this->frontIntNumb = frontIntNumb;
 
 	if(canSimplifytoFra()||canSimplifytoInt()){
 		//check if it can be simplified
@@ -83,11 +77,13 @@ Logs::Logs(string str){ //log_50:5
 		FinalSplit();
 	}
 }
-}
 
 bool Logs::canSimplifytoInt(){
 	//base^x = numb; if x is a integer, return it as integer.
 	//log_3:9 = 2; this string = 2;
+	cout<<"in log canSimplifytoInt() class"<<endl;
+	cout<<"numb is "<<numb<<"base is "<<base<<endl;
+	cout<<endl;
 	double result;
 	result= log(numb)/log(base);
 
@@ -102,6 +98,7 @@ bool Logs::canSimplifytoInt(){
 bool Logs::canSimplifytoFra(){
 	//base^x = numb; if x is a integer, return it as integer.
 	//log_9:3 = 1/2; this string = 2;
+	cout<<"in log canSimplifytoFra() class"<<endl;
 	double result;
 	result= log(base)/log(numb);
 
@@ -112,6 +109,7 @@ bool Logs::canSimplifytoFra(){
 }
 
 void Logs::Simplify(){
+	cout<<"in log getSimplify function"<<endl;
 	double result;
 	string value;
 	if(canSimplifytoInt()){
