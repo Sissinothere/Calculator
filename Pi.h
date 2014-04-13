@@ -18,12 +18,17 @@ using namespace std;
 
 class Pi{
 	double Pi_value;
-	string sValue;
+	int coefficient;
+	string sCoefficient;
+	char* sValue;
 	string answer;
+	stringstream coefficientHandle;
 
 public:
 
-	Pi(string sValue);
+	Pi(char* sValue);
+	void setCoefficient();
+	int getCoefficient();
 	string getAnswer();
 
 	void Multiply(Pi& in);
