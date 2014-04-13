@@ -47,7 +47,7 @@ void StringReader::Inject(){
 	 tempL= input.length();
 		for (int i = 0; i < input.length();i++){
 			tempL= input.length();
-			cout << "right before if statement"<<endl;
+			// cout << "right before if statement"<<endl;
 			if ((input.at(i)=='-'&&(int(input.at(i-1)) <= 57 && int(input.at(i-1)) >= 48))||(input.at(i)=='-'&&(int(input.at(i-1)) <= 105 && int(input.at(i-1)) >= 100))){
 				cout << "before erase "<<input<<endl;
 				//input.erase(i,1);
@@ -111,6 +111,9 @@ for (int i =0;i < input.length();i++){
 				//cout << input << endl;
 				//cout << endPos<< endl;
 				cout << "This is whats passed to NobracketString: "<<result <<endl;
+
+				//here put the function to find pi's and e's here
+
 				NobracketString* nbr = new NobracketString(result);
 				stringstream fa;
 				fa<<result << " = "<< nbr->getFinalAnswer();
@@ -123,11 +126,25 @@ for (int i =0;i < input.length();i++){
 
 				//test if there is anything except 0-9, if there is, add square brackets
 				//if there is sqaure brackets you test if there is anything to distribute
+/*
+				if (nbr->ansIsComplex()){
+					stringstream cp;
+					cp << '[';
+					cp << nbr->getFinalAnswer();
+					cp << ']';
+				}
+				//maybe look for only final pair of parenthesis before handling foiling
+				for(int k = 0; k < nbr->getFinalAnswer().length();k++){
+					if (nbr->getFinalAnswer().at(i)=='['){
+						//if (nbr->)
+					}
+				}
 
 
-				//result = S(result);
-				input.insert(endPos+1, result);
-				//cout<< input << endl;
+*/
+				input.insert(endPos+1,nbr->getFinalAnswer());
+
+
 				return Parenthesis();
 				return result;
 			}

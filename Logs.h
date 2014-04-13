@@ -51,9 +51,12 @@ class Logs{
 	string somelog;
 	string strbase;
 	string strnumb;
+	string strfronumb;
 	//this suposse to be a pointer, change this will also change the function.
 	double base;
 	double numb;//only can be an integer at this point.
+	double frontIntNumb;
+
 public:
 	Logs(string str);
 	~Logs();
@@ -68,6 +71,8 @@ public:
 	void divide(Logs& lg);
 	void Multip(Logs& lg);
 
+	//string getStrfronstrNumb();
+	double getFrontIntNumb();
 	double getBase();
 	double getNumb();
 	string getAnswer();//return one string

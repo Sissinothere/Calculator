@@ -8,6 +8,7 @@
 
 
 /*
+ *
 update (4/8):
 	1. This class will expected to receive a string of expression, (no brackets);
 	and seperate them into two vectors. one stores value, the other store op;
@@ -108,10 +109,13 @@ void NobracketString:: separateString(){
 				temp +=expression[i];
 		}
 			somenumbs.push_back(temp);
-//	cout<<"before simplify: "<<endl;
+	cout<<"before simplify: "<<endl;
 //	for( vector<string>::iterator i = somenumbs.begin(); i != somenumbs.end(); ++i)
 //	     cout << *i << ' ';			//check if I separate string;
 //    cout<<endl;
+			for(int i=0; i<somenumbs.size();i++){
+				cout<<somenumbs[i]<<endl;
+			}
 }
 
 void NobracketString::simplifynumbers(){ //maybe need to delete the object I create here.
@@ -121,10 +125,12 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 	cout<<"tempnumb is "<<tempnumb<<endl;
 
 	if(tempnumb.find("/")<100){					//im each value, if it contains /,
+		cout<<"im in fraction"<<endl;
 		Fraction* fra = new Fraction(somenumbs[i]);
 		somenumbs[i]=fra->getAnswer();	//change the vector number to the 		simplify number.
-//		fra->Reduction();				//this = numb1
-// 		tempnumb = fra->getAnswer();
+		//fra->Reduction();				//this = numb1
+ 		tempnumb = fra->getAnswer();
+ 		cout<<"tempnumb is after simplify "<<tempnumb<<endl;
 		if(fra->canSimplifytoInteger())			//if it simplifies to int
 			type.push_back("int");			// put "int" in the vector type;
 		else
@@ -132,18 +138,37 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 	}
 	else if(tempnumb.find("log")<100){
 		Logs* lg = new Logs(somenumbs[i]);
+
 		somenumbs[i]=lg->getSimplify();
+		cout<<"somenumbs[i] is "<<somenumbs[i]<<endl;
 		if(lg->canSimplifytoInt()){			//check if it can be simplified
+
 			type.push_back("int");
-			cout<<"in the log to int here"<<endl;
+			cout<<"in the log to int here lg->canSimplifytoInt()"<<endl;
 											//if it simplifies to int, put "int" to vector type;
 		}
 		else if(lg->canSimplifytoFra()){
 			type.push_back("frac");
 			cout<<"in the log to fra here"<<endl;			//else if it simplifies to fraction, put "fra" to vector type;
 		}else{
-			type.push_back("log");
-			cout<<"in the log to log here"<<endl;
+//			lg->FinalSplit();						//try to split the log;
+//			if(lg->getAnswer().find("+")){				//can split to different log;
+///*
+// *			 	for(int i=0;i<expression.length();i++){
+//					if(expression[i]=='+'||expression[i]=='*'){
+//					op.push_back(expression[i]);
+//					somenumbs.push_back(temp);
+//					temp = "";
+//			}
+//			else
+//				temp +=expression[i];
+//		}
+//			somenumbs.push_back(temp);
+// */
+//			}
+//			else
+				type.push_back("log");					//if it can't, type = log;
+			//cout<<"in the log to log here"<<endl;
 		}
 	}
 	else if(tempnumb.find("^")<100||tempnumb.find("rt")<100){
@@ -184,12 +209,13 @@ void NobracketString::add(string Anumb, string Atype, string Bnumb, string Btype
 	if(Atype==Btype){						//if they are the same type;
 		if(Atype == "frac")
 		{
-					//Fraction fra = new fraction(Anumb);
-					//							fra->add(Bnumb);
-					//							opAnwser = fra->getAnser();
-					//							isReturnOneNumb = true;
-					//							//same type fraction should always return one numb
-					//							//delete[] fra;				// here may need to delete the object.
+			Fraction* fra = new Fraction(Anumb);
+			Fraction* frb = new Fraction(Anumb);
+			fra->Addition(*frb);
+			opAnswer = fra->getAnswer();
+			isReturnOneNumb = true;
+										//same type fraction should always return one numb
+												//delete[] fra;				// here may need to delete the object.
 		}
 		else if(Atype == "int")
 		{
@@ -247,12 +273,11 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 		if(Atype==Btype){						//if they are the same type;
 			if(Atype == "frac")
 			{
-				//Fraction fra = new fraction(Anumb);
-				//							fra->add(Bnumb);
-				//							opAnwser = fra->getAnser();
-				//							isReturnOneNumb = true;
-				//							//same type fraction should always return one numb
-				//							//delete[] fra;				// here may need to delete the object.
+				Fraction* fra = new Fraction(Anumb);
+				Fraction* frb = new Fraction(Anumb);
+				fra->Subtraction(*frb);
+				opAnswer = fra->getAnswer();
+				isReturnOneNumb = true;				// here may need to delete the object.
 			}
 			else if(Atype == "int")
 			{
@@ -272,8 +297,12 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 				lgA->substract(*lgB);
 				opAnswer = lgA->getAnswer();
 											//delete[] lg;
-				if(opAnswer.find("-")<100)			//if the opanswer string contains "+", means it return a complex expression
+				if(opAnswer.find("-")<100)
+				{								//if the opanswer string contains "+", means it return a complex expression
 					isReturnOneNumb = false;
+
+
+				}
 				else
 					isReturnOneNumb = true;
 			}
@@ -310,12 +339,11 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 			if(Atype==Btype){						//if they are the same type;
 				if(Atype == "frac")
 				{
-					//Fraction fra = new fraction(Anumb);
-					//							fra->add(Bnumb);
-					//							opAnwser = fra->getAnser();
-					//							isReturnOneNumb = true;
-					//							//same type fraction should always return one numb
-					//							//delete[] fra;				// here may need to delete the object.
+					Fraction* fra = new Fraction(Anumb);
+					Fraction* frb = new Fraction(Anumb);
+					fra->Division(*frb);
+					opAnswer = fra->getAnswer();
+					isReturnOneNumb = true;				// here may need to delete the object.
 				}
 				else if(Atype == "int")
 				{
@@ -372,12 +400,11 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 			if(Atype==Btype){						//if they are the same type;
 				if(Atype == "frac")
 				{
-					//Fraction fra = new fraction(Anumb);
-					//							fra->add(Bnumb);
-					//							opAnwser = fra->getAnser();
-					//							isReturnOneNumb = true;
-					//							//same type fraction should always return one numb
-					//							//delete[] fra;				// here may need to delete the object.
+					Fraction* fra = new Fraction(Anumb);
+					Fraction* frb = new Fraction(Anumb);
+					fra->Multiplication(*frb);
+					opAnswer = fra->getAnswer();
+					isReturnOneNumb = true;				// here may need to delete the object.
 				}
 				else if(Atype == "int")
 				{
@@ -431,111 +458,140 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 
  void NobracketString::calculating(){
 
- 	bool havesametype=false;
- 	//check for mutipositio
- 	for(int i = 0;i<op.size();i++){							//check if op contains '*'
- 		if(op[i]=='*'){										//if op has '*'
- 			if(i==0){										// if '*' in the index position 0
- 				Multip(somenumbs[0],type[0],somenumbs[1],type[1]);		//do the mulip()
- 				if(isReturnOneNumb){									//if the answer == is return one value example: log_3:4;
- 					somenumbs[i]=opAnswer;								//set the element i to the opAnser,
- 					somenumbs.erase(somenumbs.begin()+(i+1));			//erase the second element
- 					op.erase(op.begin()+(i));							//erase the '*'
- 					cout<<"the mutip() get answer is now "<<somenumbs[i]<<endl;
- 					cout<<"im in the calculating function delecting the '*' sign in the index 0"<<endl;
- 				}
- 				else{cout<<"the '*' sign in the index 0 and the answer return more then one value"<<endl;}								// if the answer return more then one value, example 5*log_3:4;
- 													//keep everything as it is.
- 			}
- 			else{
- 				Multip(somenumbs[i],type[i],somenumbs[i+1],type[i+1]);
- 				if(isReturnOneNumb){									//if the answer == is return one value example: log_3:4;
- 					somenumbs[i]=opAnswer;								//set the element i to the opAnser,
- 					somenumbs.erase(somenumbs.begin()+(i+1));			//erase the second element
- 					op.erase(op.begin()+(i));							//erase the '*'
- 					cout<<"the mutip() get answer is now "<<somenumbs[i]<<endl;
- 					cout<<"im in the calculating function delect '*' sign DOES NOT in the index 0"<<endl;
- 				}
- 				else{cout<<"the '*' sign DOES NOT in the index 0, and the answer return more then one value"<<endl;}												// if the answer return more then one value, example 5*log_3:4;
- 																	//keep everything as it is.
- 			}
- 		}
- 		else{}									//if(op[i]!='*', do nothing;
- 	}											//end of checking '*'
- 	for(int i=0;i<op.size();i++){				//start to check if they have the same type; ad do the calculation
- 		for(int j=i+1;j<op.size()+1;j++)
- 			{
- 				cout<<"begin to check for type here"<<endl;
- 				if(type[i]==type[j]&&op[j]=='*'){		//if the op is a *, skip
- 					//do nothing;
- 					cout<<"im in the 2+3*log"<<endl;
- 				}
- 				else if(type[i]==type[j]&&op[j-1]!='*'){				//if it has same type, and op does not have *,check for operator
- 					havesametype = true;
- 					if(op[j-1]=='+')
- 					{				//only have two case +,-
- 						add(somenumbs[j],type[j],somenumbs[i],type[i]);
- 						if(isReturnOneNumb)
- 						{
- 							somenumbs[i]=opAnswer;							//set the element i to the opAnser,
- 							somenumbs.erase(somenumbs.begin()+(j));			//erase the second element
- 							op.erase(op.begin()+(j-1));				//erase the op
- 							cout<<"somenumb1 is now"<<somenumbs[i]<<endl;
- 							cout<<"im in the calculating add(),return one value"<<endl;
- 						}
- 						else
- 						{
- 							cout<<"im in the calculating add(),return more then 1 value"<<endl; //don't change anything.
- 						}
- 								// here need to do something with vectors somenumb and type
- 								// 3 + 7 = 10, 10 will replace 3 in somenumb vector and delete 7 and + from somenumb and type;
- 								// log_3:8 + log_3:7 will return as it is, so the vectors does not change, keep as it is.
- 					}
- 					else					//containts "-"l
- 					{
- 						substract(somenumbs[j],type[j],somenumbs[i],type[i]);
- 						if(isReturnOneNumb)
- 						{
- 							somenumbs[i]=opAnswer;							//set the element i to the opAnser,
- 							somenumbs.erase(somenumbs.begin()+(j));			//erase the second element
- 						 	op.erase(op.begin()+(j-1));				//erase the op
- 						 	cout<<"somenumb1 is now"<<somenumbs[i]<<endl;
- 							cout<<"im in the calculating subtract(),return one value"<<endl;
- 						}
- 						else
- 						{
- 							cout<<"im in the calculating subtract(),return more then 1 value"<<endl; //don't change anything.
- 						}
- 					}
- 				}
- 				else if((type[i]=="frac"&&type[j]=="int") || (type[j]=="frac"&&type[i]=="int"))
- 				{
- 										// handle one numb is fraction, one numb is integer
- 					havesametype =true;
- 					if(op[j-1]=='+')
- 					{			//only have two case +,-
- 						add(somenumbs[j],"frac",somenumbs[i],"frac");
- 					}
- 					else
- 					{
- 						substract(somenumbs[j],"frac",somenumbs[i],"frac");
- 					}
- 				}							//check continue comparing the next type[i+1];
- 											//after loop if we cannot find the same type;
- 			}//end of the int j loop
- //					cout<<"end check for type here"<<endl;
- 		}//end of the int i loop
+  	bool havesametype=false;
+  	//check for mutipositio
+  	int temporarySize=0;
+  	for(int i = 0;i<=op.size();++i){							//check if op contains '*'
+  		if(temporarySize != op.size()){
+  		  		i = 0;
+  		  	}
+  		temporarySize= op.size();
+  		if(op[i]=='*'){
+  			cout<<"i is : "<<i<<endl;//if op has '*'
+  			if(i==0){
+  				cout<<"if(i==0){ : "<<endl;// if '*' in the index position 0
 
-// 	if(!havesametype)
-// 	{										//if does not have same type, set answer as simplify version string;
-// 		for(int i=0;i<op.size();i++)		//the formFinalAnser() will do this steps;
-// 		{
-// 			opAnswer += somenumbs[i]+op[i];
-// 		}
-// 		opAnswer += somenumbs[somenumbs.size()-1];
-// 	}
-// 	else{cout<<"it is done it's calculation"<<endl;}
- }
+  				cout<<endl;
+  				Multip(somenumbs[0],type[0],somenumbs[1],type[1]);		//do the mulip()
+  				if(isReturnOneNumb){									//if the answer == is return one value example: log_3:4;
+  					somenumbs[i]=opAnswer;								//set the element i to the opAnser,
+  					somenumbs.erase(somenumbs.begin()+1);			//erase the second element
+  					op.erase(op.begin());							//erase the '*'
+//  					cout<<"the mutip() get answer is now "<<somenumbs[i]<<endl;
+//  					cout<<"im in the calculating function delecting the '*' sign in the index 0"<<endl;
+  				}
+  				else{cout<<"the '*' sign in the index 0 and the answer return more then one value"<<endl;}								// if the answer return more then one value, example 5*log_3:4;
+  													//keep everything as it is.
+  			}
+  			else{
+  				cout<<"if(i==0){ : else{"<<endl;
+  				Multip(somenumbs[i],type[i],somenumbs[i+1],type[i+1]);
+  				if(isReturnOneNumb){									//if the answer == is return one value example: log_3:4;
+  					somenumbs[i]=opAnswer;								//set the element i to the opAnser,
+  					somenumbs.erase(somenumbs.begin()+(i+1));			//erase the second element
+  					op.erase(op.begin()+(i));							//erase the '*'
+//  					cout<<"the mutip() get answer is now "<<somenumbs[i]<<endl;
+//  					cout<<"im in the calculating function delect '*' sign DOES NOT in the index 0"<<endl;
+  				}
+  				else{cout<<"the '*' sign DOES NOT in the index 0, and the answer return more then one value"<<endl;}												// if the answer return more then one value, example 5*log_3:4;
+  																	//keep everything as it is.
+  			}
+
+  		}
+  		else{}	//if(op[i]!='*', do nothing;
+  	//if(temporarySize != op.size()){
+  	//	i = 0;
+  	//}
+  	}											//end of checking '*'
+
+int tempSize=0;
+  	for(int i=0;i<op.size();i++){				//start to check if they have the same type; ad do the calculation
+  		for(int j=i+1;j<op.size()+1;j++)
+  		{
+  			tempSize=op.size();
+  			cout<<"j is equal "<<j<<"i is "<<i <<"op.size() is "<<op.size()<<endl;
+  				cout<<"begin to check for type here"<<endl;
+  				if(type[i]==type[j]&&op[j]=='*'){		//if the op is a *, skip
+  					//do nothing;
+  			//		cout<<"im in the 2+3*log"<<endl;
+  				}
+  				else if(type[i]==type[j]&&op[j-1]!='*'){				//if it has same type, and op does not have *,check for operator
+  					havesametype = true;
+  					if(op[j-1]=='+')
+  					{				//only have two case +,-
+  						add(somenumbs[j],type[j],somenumbs[i],type[i]);
+  						if(isReturnOneNumb)
+  						{
+  							somenumbs[i]=opAnswer;							//set the element i to the opAnser,
+  							somenumbs.erase(somenumbs.begin()+(j));			//erase the second element
+  							op.erase(op.begin()+(j-1));				//erase the op
+  							cout<<"somenumb1 is now"<<somenumbs[i]<<endl;
+  							cout<<"im in the calculating add(),return one value"<<endl;
+  						}
+  						else
+  						{
+  							cout<<"im in the calculating add(),return more then 1 value"<<endl; //don't change anything.
+  						}
+  								// here need to do something with vectors somenumb and type
+  								// 3 + 7 = 10, 10 will replace 3 in somenumb vector and delete 7 and + from somenumb and type;
+  								// log_3:8 + log_3:7 will return as it is, so the vectors does not change, keep as it is.
+  					}
+  					else					//containts "-"l
+  					{
+  						substract(somenumbs[j],type[j],somenumbs[i],type[i]);
+  						if(isReturnOneNumb)
+  						{
+  							somenumbs[i]=opAnswer;							//set the element i to the opAnser,
+  							somenumbs.erase(somenumbs.begin()+(j));			//erase the second element
+  						 	op.erase(op.begin()+(j-1));				//erase the op
+  						 	cout<<"somenumb1 is now"<<somenumbs[i]<<endl;
+  							cout<<"im in the calculating subtract(),return one value"<<endl;
+  						}
+  						else
+  						{
+  							cout<<"im in the calculating subtract(),return more then 1 value"<<endl; //don't change anything.
+  						}
+  					}
+  				}
+  				else if((type[i]=="frac"&&type[j]=="int") || (type[j]=="frac"&&type[i]=="int"))
+  				{
+  										// handle one numb is fraction, one numb is integer
+  					havesametype =true;
+  					if(op[j-1]=='+')
+  					{			//only have two case +,-
+  						add(somenumbs[j],"frac",somenumbs[i],"frac");
+  					}
+  					else
+  					{
+  						substract(somenumbs[j],"frac",somenumbs[i],"frac");
+  					}
+  				}							//check continue comparing the next type[i+1];
+  				cout<<"end check for type here"<<j<<endl;
+  				if(tempSize != op.size()){
+  					j=0;
+  				}
+  				//after loop if we cannot find the same type;
+  			}//end of the int j loop
+//  					cout<<"end check for type here"<<j<<endl;
+  		}//end of the int i loop
+
+ // 	if(!havesametype)
+ // 	{										//if does not have same type, set answer as simplify version string;
+ // 		for(int i=0;i<op.size();i++)		//the formFinalAnser() will do this steps;
+ // 		{
+ // 			opAnswer += somenumbs[i]+op[i];
+ // 		}
+ // 		opAnswer += somenumbs[somenumbs.size()-1];
+ // 	}
+ // 	else{cout<<"it is done it's calculation"<<endl;}
+//  	if(!op.empty()){
+//  		cout<<"op is not empty"<<endl;
+//  		if(op[0]=='+'){
+//  			add(somenumbs[0],type[0],somenumbs[1],type[1]);
+//  		}
+//  	}
+  }
+
 
 void NobracketString::formFinalAnser(){
 	int i = 0;

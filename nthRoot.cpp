@@ -1,5 +1,5 @@
 #include "nthRoot.h"
-
+#include <stdlib.h>
 nthRoot::nthRoot(string str)
 {
 	someroot = str;
