@@ -68,7 +68,8 @@ string getFunction(){
 void help(){
 	cout<<"------------------------------------------------------------"<<endl;
 	cout<<"This calculator is design to calculate simple and complex mathematics calculation."<<endl;
-	cout<<"	(but please do not give a supper complex expression)"<<endl;
+	cout<<"	(but please do not give a super complex expression)"<<endl;
+	cout<<"	Please do not wrap entire function in parenthesis! eg. (4+(3*7)) should be 4+(3+7)"<<endl;
 	cout<<"Operator specifications: "<<endl;
 	cout<< "	< 'x to the power of y' == x^y >" << endl;
 	cout<< "	< 'the square root of x' == sqrt:x >" << endl;

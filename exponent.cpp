@@ -1,5 +1,5 @@
 #include "Exponent.h"
-
+#include <stdlib.h>
 Exponent::Exponent(string str)
 {
 	baseIsFrac = false;
