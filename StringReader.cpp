@@ -126,7 +126,7 @@ for (int i =0;i < input.length();i++){
 
 				//test if there is anything except 0-9, if there is, add square brackets
 				//if there is sqaure brackets you test if there is anything to distribute
-
+/*
 				if (nbr->ansIsComplex()){
 					stringstream cp;
 					cp << '[';
@@ -140,11 +140,19 @@ for (int i =0;i < input.length();i++){
 					}
 				}
 
+<<<<<<< HEAD
 				//result = S(result);
+=======
+*/
+				input.insert(endPos+1,nbr->getFinalAnswer());
+>>>>>>> FETCH_HEAD
 
-				input.insert(endPos+1, nbr->getFinalAnswer());
 
 
+<<<<<<< HEAD
+=======
+				//cout<< input << endl;
+>>>>>>> FETCH_HEAD
 
 				return Parenthesis();
 				return result;
