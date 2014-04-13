@@ -45,7 +45,7 @@ nthRoot::nthRoot(string str)
 			this->n = n;
 			this->num = num;
 
-			canSimplifytoInt();
+			simplify();
 		}
 		else
 		{
