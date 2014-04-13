@@ -1,4 +1,4 @@
-#include "Exponent.h"
+#include "exponent.h"
 #include <stdlib.h>
 Exponent::Exponent(string str)
 {
