@@ -2,7 +2,7 @@
 #include "Logs.h"
 #include "Integers.h"
 #include "nthRoot.h"
-#include "Pi.h"
+//#include "Pi.h"
 #include "Exponential.h"
 #include "Fraction.h"
 
@@ -226,9 +226,9 @@ void NobracketString::add(string Anumb, string Atype, string Bnumb, string Btype
 				isReturnOneNumb = true;
 		}//it is handled in the calculating()
 		else if(Atype=="pi"){
-			Pi* p = new Pi(Anumb);
-			p->Add(*p);
-			opAnswer = p->getAnswer();
+//			Pi* p = new Pi(Anumb);
+//			p->Add(*p);
+//			opAnswer = p->getAnswer();
 			isReturnOneNumb = true;
 		}
 		else if(Atype=="e"){
@@ -293,9 +293,9 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 					isReturnOneNumb = true;
 			}//it is handled in the calculating()
 			else if(Atype=="pi"){
-				Pi* p = new Pi(Anumb);
-				p->Subtract(*p);
-				opAnswer = p->getAnswer();
+//				Pi* p = new Pi(Anumb);
+//				p->Subtract(*p);
+//				opAnswer = p->getAnswer();
 				isReturnOneNumb = true;
 			}
 			else if(Atype=="e"){
@@ -354,9 +354,9 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 
 				}//it is handled in the calculating()
 				else if(Atype=="pi"){
-					Pi* p = new Pi(Anumb);
-					p->Divide(*p);
-					opAnswer = p->getAnswer();
+//					Pi* p = new Pi(Anumb);
+//					p->Divide(*p);
+//					opAnswer = p->getAnswer();
 					isReturnOneNumb = true;
 				}
 				else if(Atype=="e"){
@@ -414,9 +414,9 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 						isReturnOneNumb = true;
 				}//it is handled in the calculating()
 				else if(Atype=="pi"){
-					Pi* p = new Pi(Anumb);
-					p->Multiply(*p);
-					opAnswer = p->getAnswer();
+//					Pi* p = new Pi(Anumb);
+//					p->Multiply(*p);
+//					opAnswer = p->getAnswer();
 					isReturnOneNumb = true;
 				}
 				else if(Atype=="e"){

@@ -1,4 +1,4 @@
-#include "exponent.h"
+#include "Exponent.h"
 
 Exponent::Exponent(string str)
 {
@@ -437,31 +437,3 @@ void Exponent::divide(Exponent& exp)
 		answer = answer + "/" + exp.getAnswer();
 }
 
-int main()
-{
-
-	string a = "4^-2"; //change values here in order to test various cases. sqrt: works the same as 2rt:...I think
-	string b = "4^-log";  //
-
-	Exponent* test1 = new Exponent(a);
-	Exponent* test2 = new Exponent(b);
-	test1->add(*test2);				//uncomment the operators based on which one you want to do.
-	//test1->subtract(*test2);
-	//test1->multiply(*test2);
-	//test1->divide(*test2);
-	//cout << test2->getSimp() << endl;
-	cout << test1->getAnswer() << endl;
-	//cout << test1->canSimplifyToFrac() << endl;
-	//cout << test1->canSimplifyToInt() << endl;
-	//cout << test1->getBase() << endl;
-	//cout<<test1->getPower()<<endl;
-	//cout<<test1->getN()<<endl;
-	//cout<<test1->getNum()<<endl;
-	//cout<<test1->getSimp()<<endl;
-	//cout<<test2->getScal()<<endl;
-	//cout<<test2->getN()<<endl;
-	//cout<<test2->getNum()<<endl;
-	//cout<<test2->getSimp()<<endl;
-
-	return 0;
-}
