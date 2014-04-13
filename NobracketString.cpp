@@ -5,6 +5,7 @@
 //#include "Pi.h"
 #include "Exponential.h"
 #include "Fraction.h"
+#include "Exponent.h"
 
 
 /*
@@ -137,14 +138,13 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 			//cout<<"in the log to log here"<<endl;
 		}
 	}
-	else if(tempnumb.find("^")<100||tempnumb.find("rt")<100){
+	else if(tempnumb.find("rt")<100){
 		nthRoot* power = new nthRoot(somenumbs[i]);
 												//will do the simplification in constructor.
 		somenumbs[i]=power->getSimp();		//get a string type
 
-//		cout<<"99999999999999999999999"<<endl;
+
 		if(power->canSimplifytoInt()){
-			cout<<"292929292929"<<power->canSimplifytoInt()<<endl;
 			type.push_back("int");
 //
 //		}
@@ -154,7 +154,18 @@ void NobracketString::simplifynumbers(){ //maybe need to delete the object I cre
 			cout<<"0000000000000000"<<endl;
 			type.push_back("root");
 		}
-//		type.push_back("root");
+	}
+	else if(tempnumb.find("^")<100){
+		Exponent* power = new Exponent(somenumbs[i]);
+		somenumbs[i]=power->getAnswer();
+
+		if(power->canSimplifyToInt()){
+			type.push_back("int");
+		}else if(power->canSimplifyToFrac()){
+			type.push_back("frac");
+		}else{
+			type.push_back("exp");
+		}
 	}
 	else if(tempnumb.find("Pi")<100||tempnumb.find("pi")<100){
 		type.push_back("pi");
@@ -236,6 +247,8 @@ void NobracketString::add(string Anumb, string Atype, string Bnumb, string Btype
 			p->Add(*p);
 			opAnswer = p->getAnswer();
 			isReturnOneNumb = true;
+		}else if(Atype=="exp"){
+
 		}
 	}else{	//if not the same type
 			cout<<"add a different type value"<<endl;
@@ -249,7 +262,7 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 			if(Atype == "frac")
 			{
 				Fraction* fra = new Fraction(Anumb);
-				Fraction* frb = new Fraction(Anumb);
+				Fraction* frb = new Fraction(Bnumb);
 				fra->Subtraction(*frb);
 				opAnswer = fra->getAnswer();
 				isReturnOneNumb = true;				// here may need to delete the object.
@@ -275,8 +288,6 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 				if(opAnswer.find("-")<100)
 				{								//if the opanswer string contains "+", means it return a complex expression
 					isReturnOneNumb = false;
-
-
 				}
 				else
 					isReturnOneNumb = true;
@@ -284,7 +295,7 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 			else if(Atype=="root")
 			{
 				nthRoot* nthNumb = new nthRoot(Anumb);
-				nthRoot* B = new nthRoot(Anumb);
+				nthRoot* B = new nthRoot(Bnumb);
 				nthNumb->subtract(*B);
 				opAnswer = nthNumb->getAns();
 				if(opAnswer.find("-")<100)			//if the opanswer string contains "+", means it return a complex expression
@@ -300,9 +311,20 @@ void NobracketString::substract(string Anumb,string Atype, string Bnumb, string 
 			}
 			else if(Atype=="e"){
 				Exponential* p = new Exponential(Anumb);
-				p->Subtract(*p);
+				Exponential* b = new Exponential(Bnumb);
+				p->Subtract(*b);
 				opAnswer = p->getAnswer();
 				isReturnOneNumb = true;
+			}
+			else if(Atype=="exp"){
+				Exponent* power = new Exponent(Anumb);
+				Exponent* b = new Exponent(Bnumb);
+				power->subtract(*b);
+				opAnswer = power->getAnswer();
+				if(opAnswer.find("-")<100)			//if the opanswer string contains "+", means it return a complex expression
+					isReturnOneNumb = false;
+				else
+					isReturnOneNumb = true;
 			}
 		}else{	//if not the same type
 			cout<<"add a different type value"<<endl;
@@ -315,7 +337,7 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 				if(Atype == "frac")
 				{
 					Fraction* fra = new Fraction(Anumb);
-					Fraction* frb = new Fraction(Anumb);
+					Fraction* frb = new Fraction(Bnumb);
 					fra->Division(*frb);
 					opAnswer = fra->getAnswer();
 					isReturnOneNumb = true;				// here may need to delete the object.
@@ -344,7 +366,7 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 				else if(Atype=="root")
 				{
 					nthRoot* nthNumb = new nthRoot(Anumb);
-					nthRoot* B = new nthRoot(Anumb);
+					nthRoot* B = new nthRoot(Bnumb);
 					nthNumb->divide(*B);
 					opAnswer = nthNumb->getAns();
 					if(opAnswer.find("/")<100)			//if the opanswer string contains "+", means it return a complex expression
@@ -361,9 +383,19 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 				}
 				else if(Atype=="e"){
 					Exponential* p = new Exponential(Anumb);
-					p->Divide(*p);
+					Exponential* b = new Exponential(Bnumb);
+					p->Divide(*b);
 					opAnswer = p->getAnswer();
 					isReturnOneNumb = true;
+				}else if(Atype=="exp"){
+					Exponent* power = new Exponent(Anumb);
+					Exponent* b = new Exponent(Bnumb);
+					power->divide(*b);
+					opAnswer = power->getAnswer();
+					if(opAnswer.find("-")<100)			//if the opanswer string contains "+", means it return a complex expression
+						isReturnOneNumb = false;
+					else
+						isReturnOneNumb = true;
 				}
 			}else{	//if not the same type
 				cout<<"add a different type value"<<endl;
@@ -424,6 +456,15 @@ void NobracketString::divide(string Anumb,string Atype, string Bnumb, string Bty
 					p->Multiply(*p);
 					opAnswer = p->getAnswer();
 					isReturnOneNumb = true;
+				}else if(Atype=="exp"){
+					Exponent* power = new Exponent(Anumb);
+					Exponent* b = new Exponent(Bnumb);
+					power->multiply(*b);
+					opAnswer = power->getAnswer();
+					if(opAnswer.find("-")<100)			//if the opanswer string contains "+", means it return a complex expression
+						isReturnOneNumb = false;
+					else
+						isReturnOneNumb = true;
 				}
 			}
 //			else{	//if not the same type

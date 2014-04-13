@@ -180,7 +180,7 @@ void Fraction::Addition(Fraction& fracB){
 
 
 
-  void Fraction::Subtraction(Fraction& fracB){
+ void Fraction::Subtraction(Fraction& fracB){
   
     
      if(den1 == 0 || fracB.getDenominator() == 0)
